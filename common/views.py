@@ -38,11 +38,18 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 
 
+from django.views.generic import FormView
+from django.urls import reverse_lazy
+from django.conf import settings
+
+from common.brevo_email import send_brevo_contact_email
+from .forms import ContactForm
+
+
 class ContactView(FormView):
     template_name = 'contacts/contacts.html'
     form_class = ContactForm
     success_url = reverse_lazy('contact-success')
-
 
     def form_valid(self, form):
         subject = f"[Contact] {form.cleaned_data['name']} <{form.cleaned_data['email']}>"
@@ -51,14 +58,12 @@ class ContactView(FormView):
             f"{form.cleaned_data['message']}"
         )
 
-        email = EmailMessage(
+        send_brevo_contact_email(
             subject=subject,
             body=body,
-            from_email=settings.DEFAULT_FROM_EMAIL,  # напр. no-reply@izkriveni-shteki.bg
-            to=[settings.DEFAULT_CONTACT_EMAIL],  # izkrivenishteki@yahoo.com
-            reply_to=[form.cleaned_data["email"]],  # за Reply
+            reply_to=form.cleaned_data["email"],
         )
-        email.send(fail_silently=False)
+
         return super().form_valid(form)
 
 
