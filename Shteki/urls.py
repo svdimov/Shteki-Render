@@ -5,6 +5,9 @@ from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
 from django.http import HttpResponse  
 
+from django.contrib.sitemaps.views import sitemap
+from common.sitemaps import StaticViewSitemap
+
 
 def health(request):  
     return HttpResponse("OK")
