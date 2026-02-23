@@ -24,8 +24,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
-      # No tests (as requested)
+      - name: Check Render secrets present
+        run: |
+          if [ -z "${{ secrets.RENDER_API_KEY }}" ]; then echo "RENDER_API_KEY is EMPTY"; exit 1; else echo "RENDER_API_KEY is set"; fi
+          if [ -z "${{ secrets.RENDER_SERVICE_ID }}" ]; then echo "RENDER_SERVICE_ID is EMPTY"; exit 1; else echo "RENDER_SERVICE_ID is set"; fi
+            # No tests (as requested)
 
   deploy:
     runs-on: ubuntu-latest
