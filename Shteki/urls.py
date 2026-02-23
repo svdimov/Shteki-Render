@@ -3,12 +3,20 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
+from django.http import HttpResponse  
+
+
+def health(request):  
+    return HttpResponse("OK")
 
 urlpatterns = [
+    path("health/", health), 
     path('i18n/', include('django.conf.urls.i18n')),   # set_language
     path('rosetta/', include('rosetta.urls')),         # Rosetta UI for translations
     path('admin/', admin.site.urls),                   # admin without language prefix
 ]
+
+
 
 urlpatterns += i18n_patterns(
     path('', include('common.urls')),
