@@ -1,0 +1,215 @@
+/* login.css — glass login page + contacts-bg light/dark */
+
+/* ---------- Section background ---------- */
+.u-section-1{
+  position: relative;
+  padding: 56px 0 72px;
+  border-bottom: 1px solid var(--border);
+
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.42)),
+    url("../images/contacts-bg-light.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+[data-theme="dark"] .u-section-1{
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,.62), rgba(0,0,0,.84)),
+    url("../images/contacts-bg-dark.jpg");
+}
+
+.u-section-1::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(900px 520px at 18% 12%, rgba(255,255,255,.14), transparent 70%),
+    radial-gradient(800px 460px at 85% 35%, rgba(255,255,255,.08), transparent 70%);
+  opacity:.75;
+}
+[data-theme="dark"] .u-section-1::before{ opacity:.35; }
+
+.u-section-1 > *{ position: relative; z-index: 1; }
+
+/* ---------- Layout ---------- */
+.u-sheet-1{
+  width: min(490px, 92vw);
+  margin: 0 auto;
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+}
+
+/* ---------- Glass card ---------- */
+.u-form-1{
+  width: 100%;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(40, 57, 108, 0.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 20px 70px rgba(0,0,0,.22);
+  overflow: hidden;
+}
+
+[data-theme="dark"] .u-form-1{
+  background: rgba(10,12,18,.42);
+  border-color: rgba(255,255,255,.14);
+  box-shadow: 0 28px 95px rgba(0,0,0,.46);
+}
+
+/* form padding already inline (style="padding: 50px;") */
+/* if you remove inline style later, keep this: */
+.u-form-1 form{
+  width: 100%;
+}
+
+/* ---------- Django form.as_p styling ---------- */
+#login-form p{
+  margin: 0 0 12px;
+  text-align: left;
+}
+
+/* labels */
+#login-form label{
+  display:block;
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: .2px;
+  color: rgba(255,255,255,.92);
+  text-shadow: 0 12px 35px rgba(0,0,0,.25);
+}
+
+/* inputs */
+#login-form input[type="text"],
+#login-form input[type="email"],
+#login-form input[type="password"]{
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.22);
+  padding: 12px 12px;
+
+  background: rgba(255,255,255,.10);
+  color: rgba(255,255,255,.95);
+
+  outline: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  transition: border-color .12s ease, box-shadow .12s ease, background .12s ease;
+}
+
+#login-form input::placeholder{
+  color: rgba(255,255,255,.62);
+  font-weight: 700;
+}
+
+#login-form input:focus{
+  border-color: color-mix(in srgb, var(--orange) 70%, rgba(255,255,255,.22));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--orange) 22%, transparent);
+  background: rgba(255,255,255,.12);
+}
+
+/* errors (Django) */
+.errorlist{
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 10px;
+  text-align: left;
+}
+.errorlist li{
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--burg) 40%, rgba(255,255,255,.18));
+  background: rgba(135,10,44,.18);
+  color: rgba(255,255,255,.95);
+  padding: 10px 12px;
+  font-weight: 800;
+}
+
+/* ---------- Submit button ---------- */
+.u-form-submit{
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+}
+
+.u-btn-submit{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--orange) 55%, #000);
+
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: .2px;
+
+  color: #1b1303;
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--orange) 92%, #fff),
+    var(--orange)
+  );
+
+  box-shadow: 0 14px 40px rgba(0,0,0,.14);
+  cursor: pointer;
+  transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+}
+
+.u-btn-submit:hover{
+  filter: brightness(.98) saturate(1.06);
+  box-shadow: 0 18px 55px rgba(0,0,0,.18);
+}
+.u-btn-submit:active{ transform: translateY(1px); }
+
+/* ---------- Links under form ---------- */
+.u-text-1,
+.u-text-2{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.u-text-1 li,
+.u-text-2 li{
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(10,12,18,.22);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 10px 14px;
+  box-shadow: 0 16px 45px rgba(0,0,0,.16);
+}
+
+.u-text-1 a,
+.u-text-2 a{
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: .2px;
+  color: rgba(255,255,255,.92);
+  text-decoration: none !important;
+}
+
+.u-text-1 li:hover,
+.u-text-2 li:hover{
+  border-color: rgba(255,255,255,.30);
+  background: rgba(10,12,18,.30);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 560px){
+  .u-section-1{ padding: 44px 0 56px; }
+  /* ако махнеш inline padding 50px, тук ще го контролираш */
+  .u-form-1 form{ padding: 18px !important; }
+  .u-text-1 li,
+  .u-text-2 li{ width: 100%; justify-content: center; }
+}

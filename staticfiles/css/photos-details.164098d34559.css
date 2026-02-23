@@ -1,0 +1,410 @@
+.u-section-photos {
+    /* Make sure your path is correct for Django static files! */
+    background-image: url("../images/t5.83a0ddf447dd.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding: 32px 0;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    background: #f9844a;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 18px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.user-photo-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.photo-card {
+    box-shadow: 0 2px 10px #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    background: #fff;
+    max-width: 240px;
+    width: 100%;
+}
+
+.zoomable-photo {
+    cursor: zoom-in;
+    width: 220px;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.zoomable-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: box-shadow 0.2s;
+    display: block;
+}
+
+.zoomable-photo img:hover {
+    box-shadow: 0 4px 24px #bbb;
+}
+
+.u-photo-meta {
+    font-size: 0.95em;
+    margin-top: 7px;
+    color: #444;
+}
+
+.photo-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.photo-modal.open {
+    display: flex;
+}
+
+.photo-modal img {
+    max-width: 92vw;
+    max-height: 90vh;
+    border-radius: 14px;
+    box-shadow: 0 0 40px #222;
+    background: #fff;
+    transition: transform 0.2s;
+    animation: zoomIn 0.17s;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.88);
+        opacity: 0.7;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+    background: #fca96d;
+    color: #111;
+    transform: translateY(-2px) scale(1.03);
+}
+
+.file-label {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 1em;
+    color: #444;
+}
+
+.custom-file-input {
+    display: none; /* Hide the default input */
+}
+
+/* Custom styled button for the file input */
+.file-label, .custom-file-upload {
+    background: #F8AE86;
+    color: #222;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 38px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    margin-right: 12px;
+    box-shadow: 0 2px 10px rgba(248, 174, 134, 0.10);
+}
+
+
+button[type="submit"] {
+    background: #F8AE86;
+    color: #222;
+    font-weight: 600;
+    font-size: 1.08em;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 38px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(248, 174, 134, 0.16);
+    margin-top: 12px;
+    margin-bottom: 8px;
+    transition: background 0.15s, transform 0.13s;
+}
+
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+    background: #fca96d;
+    color: #111;
+    transform: translateY(-2px) scale(1.03);
+}
+
+.form-error {
+    color: #e53935;
+    margin: 10px 0;
+    font-size: 0.95em;
+}
+
+.file-label {
+    background: #F8AE86;
+    color: #222;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 38px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    margin-right: 12px;
+    box-shadow: 0 2px 10px rgba(248, 174, 134, 0.10);
+    display: inline-block;
+}
+
+.file-label:hover, .file-label:focus {
+    background: #fca96d;
+    color: #111;
+}
+
+.photo-card {
+    position: relative;
+    /* other styles as before... */
+}
+
+
+.delete-btn-bottom {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    background: #e53935;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 13px; /* smaller padding */
+    font-size: 0.93em; /* smaller font */
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 1px 6px #e5393533;
+    cursor: pointer;
+    transition: background 0.18s, color 0.15s, transform 0.13s;
+    opacity: 0.95;
+    z-index: 2;
+    display: inline-block;
+    line-height: 1.2;
+    min-width: 0;
+}
+
+.delete-btn-bottom:hover, .delete-btn-bottom:focus {
+    background: #b71c1c;
+    color: #fff;
+    transform: translateY(-1px) scale(1.02);
+}
+.u-section-photos {
+    background-image: url("../images/t5.83a0ddf447dd.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding: 32px 0;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px; /* Space between elements */
+    margin-bottom: 40px;
+}
+
+.upload-form .file-label {
+    background: #F8AE86;
+    color: #222;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 38px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    margin-right: 0;
+    margin-bottom: 0;
+    box-shadow: 0 2px 10px rgba(248, 174, 134, 0.10);
+    display: inline-block;
+}
+
+.upload-form .file-label:hover,
+.upload-form .file-label:focus {
+    background: #fca96d;
+    color: #111;
+}
+
+.custom-file-input {
+    display: none;
+}
+
+button[type="submit"] {
+    background: #F8AE86;
+    color: #222;
+    font-weight: 600;
+    font-size: 1.08em;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 38px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(248, 174, 134, 0.16);
+    margin-top: 0;
+    transition: background 0.15s, transform 0.13s;
+}
+
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+    background: #fca96d;
+    color: #111;
+    transform: translateY(-2px) scale(1.03);
+}
+
+.form-error {
+    color: #e53935;
+    margin: 0 0 10px 0;
+    font-size: 0.95em;
+}
+
+#file-name {
+    margin-left: 4px;
+    font-size: 0.97em;
+    color: #86C1F8;
+    word-break: break-all;
+}
+
+/* Rest of your photo gallery and modal CSS... */
+.user-photo-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+.photo-card {
+    box-shadow: 0 2px 10px #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    background: #FEF0E8;
+    max-width: 240px;
+    width: 100%;
+    position: relative;
+}
+.zoomable-photo {
+    cursor: zoom-in;
+    width: 220px;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.zoomable-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: box-shadow 0.2s;
+    display: block;
+}
+.zoomable-photo img:hover {
+    box-shadow: 0 4px 24px #bbb;
+}
+.u-photo-meta {
+    font-size: 0.95em;
+    margin-top: 7px;
+    color: #444;
+}
+.delete-btn-bottom {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    background: #e53935;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 13px;
+    font-size: 0.93em;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 1px 6px #e5393533;
+    cursor: pointer;
+    transition: background 0.18s, color 0.15s, transform 0.13s;
+    opacity: 0.95;
+    z-index: 2;
+    display: inline-block;
+    line-height: 1.2;
+    min-width: 0;
+    margin: -5px;
+}
+.delete-btn-bottom:hover, .delete-btn-bottom:focus {
+    background: #b71c1c;
+    color: #fff;
+    transform: translateY(-1px) scale(1.02);
+}
+.circle-photo {
+    width: 130px;        /* adjust size as needed */
+    height: 130px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 14px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 10px #bbb;
+    background: #fff;
+    transition: box-shadow 0.25s;
+}
+.circle-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%; /* This makes the img round */
+    display: block;
+    transition: box-shadow 0.22s;
+    cursor: zoom-in;
+}
+.circle-photo img:hover {
+    box-shadow: 0 4px 24px #bbb;
+}
+.photo-modal img {
+    width: 900px;
+    height: 900px;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 0 40px #222;
+    background: #fff;
+    transition: transform 0.2s;
+    animation: zoomIn 0.17s;
+    display: block;
+    margin: auto;
+}
+@media (max-width: 1000px) {
+    .photo-modal img {
+        width: 95vw;
+        height: 80vw;
+        max-width: 98vw;
+        max-height: 80vh;
+    }
+}

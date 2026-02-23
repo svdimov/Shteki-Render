@@ -1,0 +1,318 @@
+/* members.css — photo background + blur ONLY inside card layout (fixed equal sizes) */
+
+/* Background photo for all sections */
+.u-section-1, .u-section-2, .u-section-3, .u-section-4{
+  position: relative;
+  padding: 54px 0;
+  border-bottom: 1px solid var(--border);
+
+  background-image:
+    linear-gradient(180deg, rgba(187, 214, 255, 0.35), rgba(0,0,0,.58)),
+    url("../images/member-light-bg.4e0232477a61.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+[data-theme="dark"] .u-section-1,
+[data-theme="dark"] .u-section-2,
+[data-theme="dark"] .u-section-3,
+[data-theme="dark"] .u-section-4{
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,.58), rgba(0,0,0,.75)),
+    url("../images/member-dark-bg.cc776091700d.png");
+}
+
+/* Page container */
+.u-section-1 .u-sheet-1,
+.u-section-2 .u-sheet-1,
+.u-section-3 .u-sheet-1,
+.u-section-4 .u-sheet-1{
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+}
+
+/* Titles readable over photo */
+.u-section-1 .u-text-1,
+.u-section-2 .u-text-1,
+.u-section-3 .u-text-1,
+.u-section-4 .u-text-1{
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: .2px;
+  text-align: center;
+  margin: 0 0 18px;
+  font-size: clamp(22px, 2.6vw, 34px);
+
+  color: rgba(255,255,255,.95);
+  text-shadow:
+    0 2px 10px rgba(0,0,0,.45),
+    0 16px 45px rgba(0,0,0,.28);
+}
+
+/* List wrapper */
+.u-section-1 .u-list-1,
+.u-section-2 .u-list-1,
+.u-section-3 .u-list-1,
+.u-section-4 .u-list-1{
+  margin-top: 10px;
+}
+
+/* ✅ OUTER repeater: grid only (NO blur, NO visible panel) */
+.u-section-1 .u-repeater-1,
+.u-section-2 .u-repeater-1,
+.u-section-3 .u-repeater-1,
+.u-section-4 .u-repeater-1{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  box-shadow: none !important;
+}
+
+/* Each item: no blur here either */
+.u-section-1 .u-repeater-item,
+.u-section-2 .u-repeater-item,
+.u-section-3 .u-repeater-item,
+.u-section-4 .u-repeater-item{
+  border-radius: 18px !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+
+  overflow: visible !important;
+  width: 100%;
+  min-width: 0;
+
+  transition: transform .14s ease;
+}
+
+.u-section-1 .u-repeater-item:hover,
+.u-section-2 .u-repeater-item:hover,
+.u-section-3 .u-repeater-item:hover,
+.u-section-4 .u-repeater-item:hover{
+  transform: translateY(-2px);
+}
+
+/* ------------------------------------------------------------------ */
+/* ✅ FIX: normalize ALL container-layout variants so they are equal   */
+/* Nicepage often sets different paddings/min-heights per layout-*     */
+/* ------------------------------------------------------------------ */
+.u-section-1 .u-container-layout,
+.u-section-2 .u-container-layout,
+.u-section-3 .u-container-layout,
+.u-section-4 .u-container-layout{
+  /* hard reset of inconsistent nicepage layout sizing */
+  padding: 0 !important;
+  margin: 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+
+  /* remove any “panel-like” outer visuals if inherited */
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* ✅ ONLY INNER layout gets the glass blur */
+/* We apply the blur on the SAME element (container-layout) but with a
+   dedicated inner "card" styling via a pseudo layer approach */
+.u-section-1 .u-container-layout,
+.u-section-2 .u-container-layout,
+.u-section-3 .u-container-layout,
+.u-section-4 .u-container-layout{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 10px !important;
+
+  /* equal spacing for all cards */
+  padding: 16px 14px 18px !important;
+
+  /* ✅ equal card height feel */
+  min-height: 230px !important;
+
+  border-radius: 18px !important;
+  background: rgba(255,255,255,.12) !important;
+  border: 1px solid rgba(255,255,255,.18) !important;
+
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+
+  box-shadow: 0 18px 60px rgba(0,0,0,.22) !important;
+  transition: background .14s ease, border-color .14s ease, box-shadow .14s ease;
+}
+
+/* Hover only affects the inner blur card */
+.u-section-1 .u-repeater-item:hover .u-container-layout,
+.u-section-2 .u-repeater-item:hover .u-container-layout,
+.u-section-3 .u-repeater-item:hover .u-container-layout,
+.u-section-4 .u-repeater-item:hover .u-container-layout{
+  background: rgba(255,255,255,.16) !important;
+  border-color: rgba(255,255,255,.30) !important;
+  box-shadow: 0 20px 70px rgba(0,0,0,.26) !important;
+}
+
+[data-theme="dark"] .u-section-1 .u-container-layout,
+[data-theme="dark"] .u-section-2 .u-container-layout,
+[data-theme="dark"] .u-section-3 .u-container-layout,
+[data-theme="dark"] .u-section-4 .u-container-layout{
+  background: rgba(10,12,18,.32) !important;
+  border-color: rgba(255,255,255,.14) !important;
+  box-shadow: 0 22px 75px rgba(0,0,0,.48) !important;
+}
+[data-theme="dark"] .u-section-1 .u-repeater-item:hover .u-container-layout,
+[data-theme="dark"] .u-section-2 .u-repeater-item:hover .u-container-layout,
+[data-theme="dark"] .u-section-3 .u-repeater-item:hover .u-container-layout,
+[data-theme="dark"] .u-section-4 .u-repeater-item:hover .u-container-layout{
+  background: rgba(10,12,18,.38) !important;
+  border-color: rgba(255,255,255,.22) !important;
+}
+
+/* Name */
+.u-section-1 .u-container-layout h4,
+.u-section-2 .u-container-layout h4,
+.u-section-3 .u-container-layout h4,
+.u-section-4 .u-container-layout h4{
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: .25px;
+  margin: 4px 0 0;
+
+  color: rgba(255,255,255,.95);
+  text-shadow: 0 10px 25px rgba(0,0,0,.30);
+}
+
+/* Divider line */
+.u-section-1 .u-line,
+.u-section-2 .u-line,
+.u-section-3 .u-line,
+.u-section-4 .u-line{
+  width: 64%;
+  height: 1px;
+  background: rgba(255,255,255,.22);
+  border: none !important;
+  margin: 4px 0 6px;
+  opacity: 1 !important;
+}
+[data-theme="dark"] .u-line{
+  background: rgba(255,255,255,.16);
+}
+
+/* Profile image */
+.u-section-1 .u-image-circle,
+.u-section-2 .u-image-circle,
+.u-section-3 .u-image-circle,
+.u-section-4 .u-image-circle{
+  width: 132px !important;
+  height: 132px !important;
+  object-fit: cover;
+  border-radius: 999px !important;
+
+  border: 2px solid rgba(255,255,255,.22) !important;
+  box-shadow: 0 18px 45px rgba(0,0,0,.18);
+}
+
+/* subtle brand accents per section (soft) */
+.u-section-1 .u-image-circle{
+  border-color: color-mix(in srgb, var(--orange) 35%, rgba(255,255,255,.22)) !important;
+}
+.u-section-2 .u-image-circle{
+  border-color: color-mix(in srgb, var(--blue) 30%, rgba(255,255,255,.22)) !important;
+}
+.u-section-3 .u-image-circle{
+  border-color: color-mix(in srgb, var(--burg) 28%, rgba(255,255,255,.22)) !important;
+}
+
+/* Pagination */
+.u-section-4 .my-pagination{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.u-section-4 .my-pagination a{
+  text-decoration:none;
+  font-weight: 900;
+  font-size: 13px;
+  padding: 9px 12px;
+  border-radius: 999px;
+
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.12);
+  color: rgba(255,255,255,.95);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  transition: transform .12s ease, background .12s ease, border-color .12s ease, opacity .12s ease;
+}
+
+.u-section-4 .my-pagination a:hover{
+  background: rgba(255,255,255,.18);
+  border-color: rgba(255,255,255,.34);
+}
+.u-section-4 .my-pagination a:active{ transform: translateY(1px); }
+
+.u-section-4 .my-pagination .current{
+  font-weight: 900;
+  color: rgba(255,255,255,.80);
+  padding: 8px 10px;
+  text-shadow: 0 10px 25px rgba(0,0,0,.25);
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .u-section-1 .u-repeater-1,
+  .u-section-2 .u-repeater-1,
+  .u-section-3 .u-repeater-1,
+  .u-section-4 .u-repeater-1{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px){
+  .u-section-1, .u-section-2, .u-section-3, .u-section-4{
+    padding: 44px 0;
+  }
+
+  .u-section-1 .u-repeater-1,
+  .u-section-2 .u-repeater-1,
+  .u-section-3 .u-repeater-1,
+  .u-section-4 .u-repeater-1{
+    grid-template-columns: 1fr;
+  }
+
+  .u-section-1 .u-container-layout,
+  .u-section-2 .u-container-layout,
+  .u-section-3 .u-container-layout,
+  .u-section-4 .u-container-layout{
+    min-height: 210px !important;
+  }
+
+  .u-section-1 .u-image-circle,
+  .u-section-2 .u-image-circle,
+  .u-section-3 .u-image-circle,
+  .u-section-4 .u-image-circle{
+    width: 120px !important;
+    height: 120px !important;
+  }
+}

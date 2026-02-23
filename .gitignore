@@ -1,0 +1,8 @@
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+
+# Local environment overrides
+.env
+notes
+.idea

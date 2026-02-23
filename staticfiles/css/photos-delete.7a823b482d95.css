@@ -1,0 +1,197 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    min-height: 100vh;
+    width: 100%;
+    /* Background image for the whole page */
+    background-image: url("../images/t5.83a0ddf447dd.jpg");  /* adjust the path if needed */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-confirm-container {
+    max-width: 400px;
+    width: 100%;
+    background: rgba(254,240,232,0.98); /* Soft color, slightly transparent */
+    border-radius: 18px;
+    box-shadow: 0 6px 32px #ddd;
+    padding: 32px 24px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.delete-title {
+    color: #e53935;
+    margin-bottom: 18px;
+    font-size: 1.35em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.delete-message {
+    margin-bottom: 22px;
+    color: #555;
+    font-size: 1.08em;
+    text-align: center;
+}
+
+.delete-photo-preview {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.delete-photo-img {
+    max-width: 240px;
+    max-height: 240px;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px #eee;
+}
+
+.delete-photo-meta {
+    font-size: 0.97em;
+    margin-top: 7px;
+    color: #777;
+    text-align: center;
+}
+
+.delete-form {
+    text-align: center;
+    width: 100%;
+}
+
+.delete-btn {
+    background: #e53935;
+    color: #fff;
+    border: none;
+    padding: 11px 38px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1em;
+    cursor: pointer;
+    margin-right: 16px;
+    transition: background 0.15s;
+}
+
+.delete-btn:hover,
+.delete-btn:focus {
+    background: #b71c1c;
+}
+
+.cancel-btn {
+    background: #F8AE86;
+    color: #222;
+    text-decoration: none;
+    padding: 11px 38px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1em;
+    transition: background 0.15s;
+    display: inline-block;
+}
+
+.cancel-btn:hover,
+.cancel-btn:focus {
+    background: #ffd3bb;
+    color: #111;
+}
+.delete-confirm-container {
+    max-width: 310px;
+    width: 100%;
+    background: rgba(254,240,232,0.98); /* Soft color, slightly transparent */
+    border-radius: 15px;
+    box-shadow: 0 4px 20px #ddd;
+    padding: 22px 14px 20px 14px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.delete-title {
+    color: #e53935;
+    margin-bottom: 10px;
+    font-size: 1.07em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.delete-message {
+    margin-bottom: 16px;
+    color: #555;
+    font-size: 0.97em;
+    text-align: center;
+}
+
+.delete-photo-preview {
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.delete-photo-img {
+    max-width: 180px;
+    max-height: 180px;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px #eee;
+}
+
+.delete-photo-meta {
+    font-size: 0.93em;
+    margin-top: 6px;
+    color: #777;
+    text-align: center;
+}
+
+.delete-form {
+    text-align: center;
+    width: 100%;
+    margin-top: 5px;
+}
+
+/* Smaller buttons */
+.delete-btn, .cancel-btn {
+    padding: 7px 22px;
+    border-radius: 7px;
+    font-size: 0.97em;
+    font-weight: 600;
+    margin: 0 4px 0 0;
+    transition: background 0.15s, color 0.15s;
+}
+
+.delete-btn {
+    background: #e53935;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-btn:hover,
+.delete-btn:focus {
+    background: #b71c1c;
+}
+
+.cancel-btn {
+    background: #F8AE86;
+    color: #222;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+
+.cancel-btn:hover,
+.cancel-btn:focus {
+    background: #ffd3bb;
+    color: #111;
+}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/login.css' %}" media="screen">
+<section class="u-align-center u-clearfix u-image u-shading u-section-1" id="carousel_790c" data-image-width="868"
+         data-image-height="868">
+    <div class="u-clearfix u-sheet u-valign-middle-lg u-sheet-1">
+        <div class="u-align-center u-form u-form-1">
+
+            <!-- 1. CORRECTED FORM TAG: The 'action' now points to your Django login URL. -->
+            <form method="post" action="{% url 'login' %}" id="login-form" onsubmit="return true;"
+                  class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form"
+                  style="padding: 50px;">
+
+                {% csrf_token %}
+
+
+
+                <!-- 3. FORM FIELDS: 'as_p' works best with your login.css styles. -->
+                {{ form.as_p }}
+
+                <!-- 4. CORRECTED SUBMIT BUTTON: This is now a real button that submits the form. -->
+                <div class="u-align-center u-form-group u-form-submit">
+                    <input type="submit" value="{% trans 'Login' %}" class="u-btn u-btn-submit u-button-style">
+                </div>
+
+            </form>
+        </div>
+        <ul class="u-text u-text-default u-text-1">
+            <!-- 5. FUNCTIONAL LINK: This now links to your registration page. -->
+            <li><a href="{% url 'register' %}" style="color: inherit; text-decoration: none;">{% trans 'Register' %}</a></li>
+        </ul>
+        <ul class="u-text u-text-default u-text-2">
+            <li><a href="{% url 'password_reset' %}" style="color: inherit; text-decoration: none;">{% trans 'Forgot password?' %}</a></li>
+        </ul>
+    </div>
+</section>
+
+<script>
+    // Add event listener to ensure form submission works
+    document.addEventListener('DOMContentLoaded', function() {
+        var loginForm = document.getElementById('login-form');
+        var submitButton = loginForm.querySelector('input[type="submit"]');
+
+        submitButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginForm.submit();
+        });
+    });
+</script>
+{% endblock %}

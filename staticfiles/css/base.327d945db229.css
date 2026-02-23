@@ -1,0 +1,9 @@
+
+/* Stop animation for the site title "Изкривени щеки" */
+.u-text-1,
+.u-text-1[data-animation-name] {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+}

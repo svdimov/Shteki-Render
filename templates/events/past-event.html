@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+    <link rel="stylesheet" href="{% static 'css/past-events.css' %}" media="screen">
+
+    <section class="u-border-1 u-border-palette-1-base u-clearfix u-image u-section-2" id="sec-0ed1">
+        <div class="u-clearfix u-sheet u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xs u-sheet-1">
+
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                <h3 class="u-text u-text-default u-text-1">{% trans 'Past Events' %}</h3>
+                <div style="display: flex; align-items: center;">
+                    <input type="text" id="search-input" placeholder="{% trans 'Search past events...' %}"
+                           style="padding: 6px 10px; border-radius: 4px; border: 1px solid #ccc; font-size: 0.9rem; margin-right: 6px;">
+                    <button id="search-btn"
+                            style="padding: 6px 12px; background-color: #f9844a; color: #fff; border: none; border-radius: 4px; cursor: pointer;">
+                        {% trans 'Search' %}
+                    </button>
+                </div>
+            </div>
+
+            <!-- Events container -->
+            <div id="events-container"></div>
+
+            <!-- Pagination container styled as original -->
+            <div id="pagination-container" class="pagination"
+                 style="display: flex; justify-content: center; margin-top: 20px; gap: 8px;"></div>
+
+        </div>
+
+    </section>
+
+    <script>
+  const apiUrl = "{% url 'api-past-events' %}";
+  const detailsUrlTemplate = "{% url 'event-details' 0 %}";
+
+  const FALLBACK_IMG1 = "{% static 'images/452545.jpg' %}";
+  const FALLBACK_IMG2 = "{% static 'images/photo-hero.jpeg' %}";
+  const FALLBACK_IMG3 = "{% static 'images/2133123.jpg' %}";
+
+  let currentQuery = '';
+  let currentPage = 1;
+  let totalPages = 1;
+
+  const container = document.getElementById('events-container');
+  const pagination = document.getElementById('pagination-container');
+  const searchBtn = document.getElementById('search-btn');
+  const searchInput = document.getElementById('search-input');
+
+  searchBtn.addEventListener('click', () => {
+    currentQuery = (searchInput.value || '').trim();
+    currentPage = 1;
+    loadEvents();
+  });
+
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      currentQuery = (searchInput.value || '').trim();
+      currentPage = 1;
+      loadEvents();
+    }
+  });
+
+  function loadEvents() {
+    let url = `${apiUrl}?page=${currentPage}`;
+    if (currentQuery) url += `&q=${encodeURIComponent(currentQuery)}`;
+
+    fetch(url)
+      .then(r => r.json())
+      .then(data => {
+        renderEvents(data.results || []);
+        renderPagination(data.count || 0);
+      })
+      .catch(err => {
+        console.error(err);
+        renderEvents([]);
+        renderPagination(0);
+      });
+  }
+
+  // --------- Variant B: createElements (XSS safe) ---------
+  function renderEvents(events) {
+    // clear container safely
+    container.replaceChildren();
+
+    if (!events.length) {
+      const h = document.createElement('h3');
+      h.className = 'center-text';
+      h.textContent = 'No past events.';
+      container.appendChild(h);
+      return;
+    }
+
+    const frag = document.createDocumentFragment();
+
+    events.forEach((event) => {
+      const img1 = event.image1 && String(event.image1).trim() !== '' ? event.image1 : FALLBACK_IMG1;
+      const img2 = event.image2 && String(event.image2).trim() !== '' ? event.image2 : FALLBACK_IMG2;
+      const img3 = event.image3 && String(event.image3).trim() !== '' ? event.image3 : FALLBACK_IMG3;
+
+      // keep your backend URL shape: /.../0/ -> /.../<id>/
+      const detailUrl = detailsUrlTemplate.replace('/0/', `/${event.id}/`);
+
+      // Card wrapper
+      const card = document.createElement('div');
+      card.className =
+        'u-align-left u-container-align-left u-container-style u-group u-palette-1-light-3 u-radius u-shape-round u-group-1';
+      card.setAttribute('data-animation-name', 'customAnimationIn');
+      card.setAttribute('data-animation-duration', '1500');
+      card.setAttribute('data-animation-delay', '0');
+
+      // Inner layout
+      const layout = document.createElement('div');
+      layout.className = 'u-container-layout u-container-layout-2';
+
+      // helper for images
+      const makeImg = (src, cls) => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = event.name || '';
+        img.className = cls;
+        img.setAttribute('data-animation-name', 'customAnimationIn');
+        img.setAttribute('data-animation-duration', '1500');
+        img.setAttribute('data-animation-delay', '250');
+        return img;
+      };
+
+      layout.appendChild(
+        makeImg(img1, 'u-border-2 u-border-palette-1-base u-image u-image-circle u-image-2')
+      );
+      layout.appendChild(
+        makeImg(img2, 'u-border-2 u-border-palette-1-base u-image u-image-circle u-image-3')
+      );
+      layout.appendChild(
+        makeImg(img3, 'u-border-2 u-border-palette-1-base u-image u-image-circle u-image-4')
+      );
+
+      // Title (XSS safe)
+      const title = document.createElement('h3');
+      title.className = 'u-align-center u-text u-text-2';
+      title.textContent = event.name || '';
+      layout.appendChild(title);
+
+      // Divider line
+      const line = document.createElement('div');
+      line.className =
+        'u-align-center u-border-3 u-border-palette-1-base u-line u-line-horizontal u-line-1';
+      layout.appendChild(line);
+
+      // More info button
+      const a = document.createElement('a');
+      a.href = detailUrl;
+      a.className = 'u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-2';
+      a.textContent = "{% trans 'More info' %}";
+      layout.appendChild(a);
+
+      card.appendChild(layout);
+      frag.appendChild(card);
+    });
+
+    container.appendChild(frag);
+  }
+
+  // Pagination (без innerHTML +=, пак DOM)
+  function renderPagination(totalItems) {
+    pagination.replaceChildren();
+
+    const perPage = 8; // keep your API page size in sync
+    totalPages = Math.ceil(totalItems / perPage);
+
+    if (totalPages <= 1) return;
+
+    const makeLink = (label, page) => {
+      const link = document.createElement('a');
+      link.href = '#';
+      link.textContent = label;
+      link.style.padding = '6px 12px';
+      link.style.border = '1px solid #ccc';
+      link.style.borderRadius = '4px';
+      link.style.textDecoration = 'none';
+
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        gotoPage(page);
+      });
+
+      return link;
+    };
+
+    if (currentPage > 1) {
+      pagination.appendChild(makeLink('First', 1));
+      pagination.appendChild(makeLink('Previous', currentPage - 1));
+    }
+
+    const span = document.createElement('span');
+    span.textContent = `Page ${currentPage} of ${totalPages}`;
+    span.style.padding = '6px 12px';
+    span.style.border = '1px solid #ccc';
+    span.style.borderRadius = '4px';
+    pagination.appendChild(span);
+
+    if (currentPage < totalPages) {
+      pagination.appendChild(makeLink('Next', currentPage + 1));
+      pagination.appendChild(makeLink('Last', totalPages));
+    }
+  }
+
+  function gotoPage(page) {
+    currentPage = page;
+    loadEvents();
+  }
+
+  window.addEventListener('load', loadEvents);
+</script>
+
+{% endblock %}

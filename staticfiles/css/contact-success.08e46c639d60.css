@@ -1,0 +1,112 @@
+/* contact-success.css — glass blur success page */
+
+/* Page wrapper */
+.contact-success-page{
+  min-height: calc(100vh - 180px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.45)),
+    url("../images/t5.83a0ddf447dd.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* Glass container */
+.contact-success-box{
+  max-width: 520px;
+  width: 100%;
+  padding: 28px 26px;
+  text-align: center;
+
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.22);
+
+  background: rgba(255,255,255,.16);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(12px);
+
+  box-shadow: 0 20px 60px rgba(0,0,0,.18);
+
+  animation: successPop .5s cubic-bezier(.2,.9,.2,1) both;
+}
+
+/* Dark mode tweak */
+[data-theme="dark"] .contact-success-box{
+  background: rgba(10,12,18,.38);
+  border-color: rgba(255,255,255,.14);
+  box-shadow: 0 26px 80px rgba(0,0,0,.55);
+}
+
+/* Title */
+.contact-success-box h2{
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(24px, 3vw, 34px);
+
+  background: linear-gradient(135deg, var(--orange), var(--blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Text */
+.contact-success-box p{
+  margin: 6px 0;
+  font-size: 15px;
+  color: color-mix(in srgb, var(--text) 92%, transparent);
+}
+
+/* Link */
+.contact-success-box a{
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: 900;
+  text-decoration: none;
+
+  color: color-mix(in srgb, var(--blue) 75%, var(--text));
+  position: relative;
+}
+
+.contact-success-box a::after{
+  content:"";
+  position:absolute;
+  left:0; right:0; bottom:-3px;
+  height:2px;
+  background: linear-gradient(90deg, var(--orange), var(--blue));
+  opacity:.8;
+}
+
+.contact-success-box a:hover{
+  color: var(--orange);
+}
+
+/* Animation */
+@keyframes successPop{
+  0%{
+    opacity: 0;
+    transform: translateY(12px) scale(.98);
+  }
+  60%{
+    opacity: 1;
+    transform: translateY(0) scale(1.02);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px){
+  .contact-success-box{
+    padding: 22px 18px;
+    border-radius: 18px;
+  }
+}

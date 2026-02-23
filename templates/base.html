@@ -1,0 +1,184 @@
+{% load static %}
+{% load i18n %}
+
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE|default:'en' }}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}Изкривени щеки{% endblock %}</title>
+
+  <link rel="icon" href="{% static 'images/logo.png' %}" />
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+  {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+  <header class="header" id="top">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="{% url 'home' %}">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="{% static 'images/logo.png' %}" alt="" class="brand-logo" />
+        </span>
+
+        <span class="brand-title">
+          <span class="brand-name">Изкривени щеки</span>
+          <span class="brand-tag">{% trans "Mountain community" %}</span>
+        </span>
+      </a>
+
+      <div class="nav-right">
+        <button class="btn btn-ghost btn-sm theme-btn" id="themeBtn" type="button" aria-label="Toggle theme">
+          Dark
+        </button>
+
+        <button class="nav-toggle" id="navToggle" type="button"
+                aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+          ☰
+        </button>
+      </div>
+
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a class="nav-link" href="{% url 'home' %}">{% trans "Home" %}</a></li>
+        <li><a class="nav-link" href="{% url 'contacts' %}">{% trans "Contacts" %}</a></li>
+        <li><a class="nav-link" href="{% url 'about' %}">{% trans "Members" %}</a></li>
+        <li><a class="nav-link" href="{% url 'new-events' %}">{% trans "New Events" %}</a></li>
+        <li><a class="nav-link" href="{% url 'past-events' %}">{% trans "Past Events" %}</a></li>
+        <li><a class="nav-link" href="{% url 'photos' %}">{% trans "Photos" %}</a></li>
+
+        <li class="nav-sep" aria-hidden="true"></li>
+
+        {% if not user.is_authenticated %}
+          <li>
+            <a class="btn btn-primary btn-sm" href="{% url 'login' %}">
+              {% trans "Login" %}
+            </a>
+          </li>
+        {% else %}
+          <li>
+            <a class="btn btn-secondary btn-sm" href="{% url 'profile-details' request.user.pk %}">
+              {% trans "Account" %}
+            </a>
+          </li>
+          <li>
+            <form method="post" action="{% url 'logout' %}" class="inline-form">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-outline btn-sm">
+                {% trans "Logout" %}
+              </button>
+            </form>
+          </li>
+        {% endif %}
+
+        <li class="nav-sep" aria-hidden="true"></li>
+
+      {% get_current_language as LANGUAGE_CODE %}
+<li>
+  <form action="{% url 'set_language' %}" method="post" class="inline-form">
+    {% csrf_token %}
+
+    {# махаме /bg или /en от началото -> остава /events/..., /contacts/..., etc #}
+    <input type="hidden" name="next" value="{{ request.get_full_path|slice:'3:' }}">
+
+    {% if LANGUAGE_CODE == "bg" %}
+      <button type="submit" name="language" value="en" class="lang-btn" aria-label="Switch to English">
+        EN
+      </button>
+    {% else %}
+      <button type="submit" name="language" value="bg" class="lang-btn" aria-label="Превключи на български">
+        BG
+      </button>
+    {% endif %}
+  </form>
+</li>
+
+      </ul>
+    </nav>
+
+    <div class="container header-sub">
+      {% if user.is_authenticated %}
+        <p class="welcome">
+          {% trans "Welcome" %}: <span class="welcome-strong">{{ user.email }}</span>
+        </p>
+      {% else %}
+        <p class="welcome">
+          {% trans "Welcome" %}: <span class="welcome-strong">Anonymous</span>
+        </p>
+      {% endif %}
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container content main-content">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <a href="{% url 'home' %}" class="footer-brand" aria-label="Home">
+        <img src="{% static 'images/logo.png' %}" alt="" class="footer-logo" />
+        <span class="footer-brand-name">Изкривени щеки</span>
+      </a>
+
+      <p class="footer-copy">
+        © <span id="year"></span> Shteki Team. All rights reserved.
+      </p>
+
+      <div class="footer-social" aria-label="Social">
+        <a class="social-link" target="_blank" rel="noopener"
+           href="https://www.facebook.com/groups/987216818883275">Facebook</a>
+        <a class="social-link" target="_blank" rel="noopener" href="">Instagram</a>
+        <a class="social-link" target="_blank" rel="noopener" href="">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  {% block extra_js %}{% endblock %}
+
+  <script>
+    // Mobile nav
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    navToggle?.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+      navToggle.setAttribute("aria-expanded", String(open));
+    });
+
+    navLinks?.addEventListener("click", (e) => {
+      const a = e.target.closest("a");
+      if (!a) return;
+      navLinks.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+    });
+
+    // Theme toggle
+    const themeBtn = document.getElementById("themeBtn");
+    const root = document.documentElement;
+
+    function setTheme(next) {
+      root.setAttribute("data-theme", next);
+      if (themeBtn) themeBtn.textContent = next === "dark" ? "Light" : "Dark";
+      localStorage.setItem("theme", next);
+    }
+
+    const saved = localStorage.getItem("theme");
+    if (saved === "dark") setTheme("dark");
+
+    themeBtn?.addEventListener("click", () => {
+      const current = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+      setTheme(current === "dark" ? "light" : "dark");
+    });
+
+    // Footer year
+    document.getElementById("year").textContent = String(new Date().getFullYear());
+  </script>
+</body>
+</html>

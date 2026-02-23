@@ -1,0 +1,141 @@
+/* event-delete.css — mountain outdoor + glass confirm card (light/dark) */
+
+/* ---- section background ---- */
+.u-section-1{
+  position: relative;
+  padding: 216px 0 84px;
+  border-bottom: 1px solid var(--border);
+
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.42)),
+    url("../images/contacts-bg-light.80845a2ebbc2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+[data-theme="dark"] .u-section-1{
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,.62), rgba(0,0,0,.86)),
+    url("../images/contacts-bg-dark.9e7489ca7014.jpg");
+}
+
+/* decorative readability layer */
+.u-section-1::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(800px 520px at 20% 10%, rgba(255,255,255,.16), transparent 70%),
+    radial-gradient(700px 520px at 85% 40%, rgba(255,255,255,.10), transparent 70%);
+  opacity:.75;
+}
+[data-theme="dark"] .u-section-1::before{ opacity:.35; }
+
+.u-section-1 > *{ position:relative; z-index:1; }
+
+/* ---- container ---- */
+.u-section-1 .u-sheet-1{
+  width: min(860px, 92vw);
+  margin: 0 auto;
+  text-align: center;
+  top: -70px;
+
+  /* glass card */
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(10,12,18,.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 22px 80px rgba(0,0,0,.22);
+
+  padding: 26px 18px 22px;
+}
+
+[data-theme="dark"] .u-section-1 .u-sheet-1{
+  background: rgba(10,12,18,.40);
+  border-color: rgba(255,255,255,.14);
+  box-shadow: 0 28px 95px rgba(0,0,0,.50);
+}
+
+/* ---- title ---- */
+.u-text-1{
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: .2px;
+  font-size: clamp(18px, 2.2vw, 26px);
+  color: rgba(255,255,255,.95);
+  text-shadow:
+    0 2px 10px rgba(0,0,0,.45),
+    0 18px 55px rgba(0,0,0,.22);
+}
+
+/* ---- form ---- */
+.u-section-1 form{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* ---- delete button ---- */
+.u-btn-1{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--burg) 45%, rgba(255,255,255,.18));
+  cursor: pointer;
+  text-decoration: none;
+
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: .25px;
+
+  color: rgba(255,255,255,.96);
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--burg) 78%, rgba(0,0,0,.35)),
+    color-mix(in srgb, var(--burg) 46%, rgba(255,255,255,.10))
+  );
+
+  box-shadow: 0 18px 60px rgba(0,0,0,.22);
+  transition: transform .12s ease, filter .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+
+.u-btn-1:hover{
+  transform: translateY(-1px);
+  filter: brightness(.98) saturate(1.06);
+  border-color: color-mix(in srgb, var(--burg) 62%, rgba(255,255,255,.22));
+  box-shadow: 0 22px 78px rgba(0,0,0,.28);
+}
+
+.u-btn-1:active{
+  transform: translateY(1px);
+}
+
+/* focus ring (matches your base.css tokens) */
+.u-btn-1:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 4px var(--focus), 0 22px 78px rgba(0,0,0,.28);
+}
+
+/* ---- responsive ---- */
+@media (max-width: 560px){
+  .u-section-1{ padding: 54px 0 66px; }
+
+  .u-section-1 .u-sheet-1{
+    padding: 22px 14px 18px;
+    border-radius: 18px;
+  }
+
+  .u-btn-1{
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+}

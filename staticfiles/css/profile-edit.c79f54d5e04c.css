@@ -1,0 +1,235 @@
+/* profile-edit.css — glass edit profile (contacts-bg light/dark) */
+
+/* ---------- Page background ---------- */
+.edit-profile{
+  position: relative;
+  padding: 56px 0 72px;
+  border-bottom: 1px solid var(--border);
+
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.42)),
+    url("../images/contacts-bg-light.80845a2ebbc2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+[data-theme="dark"] .edit-profile{
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,.62), rgba(0,0,0,.84)),
+    url("../images/contacts-bg-dark.9e7489ca7014.jpg");
+}
+
+.edit-profile::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(900px 520px at 18% 12%, rgba(255,255,255,.14), transparent 70%),
+    radial-gradient(820px 480px at 85% 35%, rgba(255,255,255,.08), transparent 70%);
+  opacity:.75;
+}
+[data-theme="dark"] .edit-profile::before{ opacity:.35; }
+
+.edit-profile > *{ position: relative; z-index: 1; }
+
+/* ---------- Container (glass card) ---------- */
+.edit-container{
+  width: min(570px, 92vw);
+  margin: 0 auto;
+
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(40, 57, 108, 0.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(12px);
+
+  padding: 18px 16px;
+  box-shadow: 0 24px 85px rgba(0,0,0,.24);
+}
+
+[data-theme="dark"] .edit-container{
+  background: rgba(10,12,18,.44);
+  border-color: rgba(255,255,255,.14);
+  box-shadow: 0 32px 110px rgba(0,0,0,.48);
+}
+
+/* ---------- Django form output ({{ form }}) ---------- */
+.edit-container form{
+  display: grid;
+  gap: 12px;
+}
+
+/* Labels (Django usually renders <label>) */
+.edit-container label{
+  display:block;
+  margin: 10px 0 6px;
+
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: .2px;
+
+  color: rgba(255,255,255,.92);
+  text-shadow: 0 12px 35px rgba(0,0,0,.25);
+}
+
+/* Inputs / selects / textarea */
+.edit-container input[type="text"],
+.edit-container input[type="email"],
+.edit-container input[type="password"],
+.edit-container input[type="url"],
+.edit-container input[type="number"],
+.edit-container input[type="date"],
+.edit-container select,
+.edit-container textarea{
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.22);
+  padding: 12px 12px;
+
+  background: rgba(255,255,255,.10);
+  color: rgba(255,255,255,.95);
+
+  outline: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  transition: border-color .12s ease, background .12s ease, box-shadow .12s ease;
+}
+
+.edit-container textarea{
+  min-height: 120px;
+  resize: vertical;
+}
+
+.edit-container input::placeholder,
+.edit-container textarea::placeholder{
+  color: rgba(255,255,255,.70);
+}
+
+/* Focus */
+.edit-container input:focus,
+.edit-container select:focus,
+.edit-container textarea:focus{
+  border-color: color-mix(in srgb, var(--orange) 55%, rgba(255,255,255,.25));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--orange) 20%, transparent);
+}
+
+/* Select options (not all browsers respect) */
+.edit-container select option{
+  background: rgba(10,12,18,.92);
+  color: #fff;
+}
+
+/* ---------- File input (style the button) ---------- */
+.edit-container input[type="file"]{
+  width: 100%;
+  border-radius: 14px;
+  border: 1px dashed rgba(255,255,255,.28);
+  padding: 10px;
+
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.92);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.edit-container input[type="file"]::file-selector-button{
+  margin-right: 12px;
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 999px;
+  padding: 8px 12px;
+
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: .2px;
+
+  color: rgba(255,255,255,.95);
+  background: rgba(10,12,18,.28);
+  cursor: pointer;
+
+  transition: transform .12s ease, filter .12s ease, background .12s ease, border-color .12s ease;
+}
+
+.edit-container input[type="file"]::file-selector-button:hover{
+  background: rgba(10,12,18,.38);
+  border-color: rgba(255,255,255,.34);
+}
+.edit-container input[type="file"]::file-selector-button:active{
+  transform: translateY(1px);
+}
+
+/* ---------- Errors (Django: ul.errorlist) ---------- */
+.edit-container .errorlist{
+  list-style: none;
+  padding: 10px 12px;
+  margin: 6px 0 0;
+
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--burg) 40%, rgba(255,255,255,.16));
+  background: rgba(135,10,44,.18);
+  color: rgba(255,255,255,.95);
+
+  box-shadow: 0 18px 45px rgba(0,0,0,.18);
+}
+.edit-container .errorlist li{
+  margin: 4px 0;
+  font-weight: 800;
+}
+
+/* ---------- Buttons ---------- */
+.btn-save,
+.btn-back{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  width: 100%;
+  padding: 11px 14px;
+
+  border-radius: 999px;
+  text-decoration: none;
+
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: .2px;
+
+  border: 1px solid rgba(255,255,255,.22);
+  cursor: pointer;
+
+  transition: transform .12s ease, filter .12s ease, box-shadow .12s ease, opacity .12s ease;
+}
+
+.btn-save{
+  color: #1b1303;
+  border-color: color-mix(in srgb, var(--orange) 55%, #000);
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--orange) 92%, #fff),
+    var(--orange)
+  );
+  box-shadow: 0 16px 45px rgba(0,0,0,.18);
+}
+.btn-save:hover{ filter: brightness(.98) saturate(1.05); box-shadow: 0 20px 60px rgba(0,0,0,.22); }
+.btn-save:active{ transform: translateY(1px); }
+
+.btn-back{
+  margin-top: 10px;
+  color: rgba(255,255,255,.94);
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.20);
+  box-shadow: 0 16px 45px rgba(0,0,0,.14);
+}
+.btn-back:hover{ filter: brightness(1.02); box-shadow: 0 20px 60px rgba(0,0,0,.18); }
+.btn-back:active{ transform: translateY(1px); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 560px){
+  .edit-profile{ padding: 44px 0 56px; }
+  .edit-container{ padding: 14px 12px; }
+}

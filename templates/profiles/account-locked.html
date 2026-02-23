@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Your account is locked</h2>
+<p>You have tried logging in too many times.</p>
+<p><a href="{% url 'password_reset' %}">Reset your password</a> or wait 1 hour.</p>
+{% endblock %}

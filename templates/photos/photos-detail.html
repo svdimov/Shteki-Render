@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+
+    <link rel="stylesheet" href="{% static 'css/photos-details.css' %}" media="screen">
+
+    <section class="u-section-photos">
+        <div class="u-sheet u-valign-top">
+            <form method="post" enctype="multipart/form-data" class="upload-form" style="margin-bottom: 40px;">
+                {% csrf_token %}
+                <label for="id_image" class="file-label">{% trans 'Choose images' %}</label>
+                <input id="id_image" type="file" name="images" class="custom-file-input" multiple style="display:none;">
+                <span id="file-name"></span>
+                {% if form_error %}
+                    <div class="form-error">
+                        {{ form_error }}
+                    </div>
+                {% endif %}
+                <button type="submit">{% trans 'Submit' %}</button>
+            </form>
+
+            {% if photos %}
+                <h2 class="u-text u-text-default">{% trans 'All photos from ' %}{{ event.name }}</h2>
+                <div class="user-photo-gallery">
+                    {% for photo in photos %}
+                        <div class="photo-card photo-fade-in">
+                            <div class="circle-photo">
+                                <img src="{{ photo.image.url }}" alt="User photo">
+                            </div>
+                            {% if photo.user == request.user or perms.photos.delete_photo %}
+                                <a href="{% url 'photo-delete' photo.id %}?next={{ request.path }}"
+                                   class="delete-btn-bottom" title="Delete this photo">{% trans 'Delete' %}</a>
+                            {% endif %}
+
+
+                            <div class="u-photo-meta">
+                                {% trans 'Uploaded by' %} <b>{{ photo.user.profile.full_name }}</b><br>
+                                <span>{{ photo.uploaded_at|date:"SHORT_DATE_FORMAT" }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                </div>
+            {% else %}
+                <h2 class="u-text u-text-default">{% trans 'No user photos uploaded yet.' %}</h2>
+            {% endif %}
+
+        </div>
+    </section>
+
+    <!-- Modal (hidden by default) -->
+    <div id="photo-modal" class="photo-modal">
+        <img id="modal-img" src="" alt="Zoomed photo">
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Image click for zoom modal
+            document.querySelectorAll('.circle-photo img, .zoomable-photo img').forEach(function (img) {
+                img.addEventListener('click', function () {
+                    document.getElementById('modal-img').src = this.src;
+                    document.getElementById('photo-modal').classList.add('open');
+                });
+            });
+
+            document.getElementById('photo-modal').addEventListener('click', function (e) {
+                if (e.target === this) {
+                    this.classList.remove('open');
+                    document.getElementById('modal-img').src = '';
+                }
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    document.getElementById('photo-modal').classList.remove('open');
+                    document.getElementById('modal-img').src = '';
+                }
+            });
+
+            // File input label and file name
+            document.querySelector('.file-label').addEventListener('click', function () {
+                document.querySelector('.custom-file-input').click();
+            });
+
+            document.querySelector('.custom-file-input').addEventListener('change', function () {
+                const fileNameSpan = document.getElementById('file-name');
+                if (this.files.length > 0) {
+                    let names = [];
+                    for (let i = 0; i < this.files.length; i++) {
+                        names.push(this.files[i].name);
+                    }
+                    fileNameSpan.textContent = names.join(', ');
+                } else {
+                    fileNameSpan.textContent = '';
+                }
+            });
+        });
+    </script>
+
+{% endblock %}

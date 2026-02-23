@@ -1,0 +1,610 @@
+/* events-details.css — Mountain vibe (map/wood/eco) + contacts-bg light/dark */
+
+/* -------------------- Background (light/dark) -------------------- */
+.event-details{
+  position: relative;
+  padding: 64px 0 78px;
+  border-bottom: 1px solid var(--border);
+
+  background-image:
+    linear-gradient(180deg, rgba(36, 89, 248, 0.12), rgba(10,12,18,.62)),
+    url("../images/contacts-bg-light.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+[data-theme="dark"] .event-details{
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,.58), rgba(0,0,0,.88)),
+    url("../images/contacts-bg-dark.jpg");
+}
+
+.event-details::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  /* “fog + sunspots” */
+  background:
+    radial-gradient(900px 520px at 12% 10%, rgba(255,255,255,.18), transparent 70%),
+    radial-gradient(800px 520px at 85% 35%, rgba(241,152,6,.12), transparent 72%),
+    radial-gradient(700px 420px at 50% 95%, rgba(9,41,142,.10), transparent 70%);
+  opacity: .75;
+}
+
+[data-theme="dark"] .event-details::before{
+  opacity: .35;
+}
+
+.event-details__inner{
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* -------------------- Top bar (actions + status) -------------------- */
+.event-details__top{
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.event-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap: wrap;
+}
+
+/* Buttons = “trail badges” */
+.btn-pill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 10px 14px;
+  border-radius: 14px;                 /* по-“badge”, не хапче */
+  text-decoration:none;
+
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: .2px;
+
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.10);
+  color: rgba(255,255,255,.95);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow: 0 16px 45px rgba(0,0,0,.18);
+  transition: transform .12s ease, filter .12s ease, border-color .12s ease, background .12s ease;
+}
+
+.btn-pill:hover{
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,.34);
+  filter: brightness(.98) saturate(1.06);
+}
+
+.btn-pill:active{ transform: translateY(1px); }
+
+.btn-pill--primary{
+  color:#1b1303;
+  border-color: color-mix(in srgb, var(--orange) 55%, #000);
+  background:
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--orange) 92%, #fff),
+      var(--orange)
+    );
+}
+
+.btn-pill--secondary{
+  border-color: rgba(255,255,255,.22);
+  background:
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--blue) 75%, rgba(255,255,255,.14)),
+      color-mix(in srgb, var(--burg) 25%, rgba(255,255,255,.10))
+    );
+}
+
+.btn-pill--danger{
+  border-color: color-mix(in srgb, var(--burg) 45%, rgba(255,255,255,.22));
+  background:
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--burg) 75%, rgba(0,0,0,.35)),
+      color-mix(in srgb, var(--burg) 40%, rgba(255,255,255,.10))
+    );
+}
+
+.btn-pill--ghost{
+  opacity: 0;
+  pointer-events:none;
+  width: 110px;
+}
+
+/* Status card – “wooden label” look */
+.status-card{
+  flex: 1 1 360px;
+  max-width: 520px;
+
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.20);
+
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  box-shadow: 0 20px 60px rgba(0,0,0,.20);
+  padding: 14px;
+}
+
+[data-theme="dark"] .status-card{
+  background: rgba(10,12,18,.34);
+}
+
+.status-form{ display:grid; gap: 10px; }
+
+.status-label{
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: .2px;
+  color: rgba(255,255,255,.92);
+}
+
+.status-controls{
+  display:grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.status-select{
+  width:100%;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.22);
+  padding: 12px 12px;
+
+  background: rgba(10,12,18,.22);
+  color: rgba(255,255,255,.96);
+
+  outline:none;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  appearance:none;
+}
+
+.status-select option{
+  background: rgba(10,12,18,.92);
+  color:#fff;
+}
+
+/* -------------------- Header (title + creator) -------------------- */
+.event-header{
+  margin: 10px 0 18px;
+  padding: 18px 18px 16px;
+  border-radius: 22px;
+
+  border: 1px solid rgba(255,255,255,.18);
+  background:
+    linear-gradient(180deg, rgba(4, 106, 238, 0.1), rgba(255,255,255,.06));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  box-shadow: 0 22px 70px rgba(0,0,0,.22);
+}
+
+[data-theme="dark"] .event-header{
+  background: rgba(10,12,18,.36);
+}
+
+.event-title{
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(24px, 3.1vw, 44px);
+  line-height: 1.08;
+
+  color: rgba(255,255,255,.96);
+  text-shadow: 0 18px 55px rgba(0,0,0,.25);
+}
+
+/* Creator “trail tag” */
+.creator{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  width: fit-content;
+
+  padding: 8px 10px;
+  border-radius: 999px;
+
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(10,12,18,.22);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.creator__label{
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 12px;
+  color: rgba(255,255,255,.86);
+}
+
+.creator__img{
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,.22);
+}
+
+.creator__name{
+  font-weight: 900;
+  color: rgba(255,255,255,.92);
+  white-space: nowrap;
+}
+
+/* -------------------- Main layout -------------------- */
+/* “Hiking card stack”: always stable, no jumping */
+.event-grid{
+  display:grid;
+
+  gap: 14px;
+  align-items: start;
+}
+
+/* default panels */
+.glass{
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.18);
+
+  background:
+    linear-gradient(180deg, rgba(4, 106, 238, 0.1), rgba(255,255,255,.06));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  box-shadow: 0 22px 70px rgba(0,0,0,.22);
+}
+
+[data-theme="dark"] .glass{
+  background: rgba(10,12,18,.36);
+}
+
+.panel{ padding: 16px; }
+
+/* Wide ones (gallery/location/comments) */
+.panel--wide{ grid-column: 1 / -1; }
+
+.panel__head{
+  display:flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed rgba(255,255,255,.22); /* “map dashed trail” */
+}
+
+.panel__title{
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: .2px;
+  color: rgba(255,255,255,.92);
+}
+
+.panel__count{
+  color: color-mix(in srgb, var(--orange) 75%, white);
+}
+
+/* ---- People will go ---- */
+.avatars{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.avatar{
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid rgba(255,255,255,.18);
+  box-shadow: 0 16px 40px rgba(0,0,0,.20);
+  position: relative;
+}
+
+/* small “pin ring” */
+.avatar::after{
+  content:"";
+  position:absolute;
+  inset:-3px;
+  border-radius: 999px;
+  border: 1px solid rgba(241,152,6,.22);
+  pointer-events:none;
+}
+
+.muted{ color: rgba(255,255,255,.78); }
+
+/* ---- Description ---- */
+.richtext{
+  color: rgba(255,255,255,.92);
+  line-height: 1.6;
+}
+.richtext p{ color: rgba(255,255,255,.92); margin: 8px 0; }
+.richtext a{ color: rgba(255,255,255,.95); text-decoration: underline; text-underline-offset: 3px; }
+
+/* FIX: richtext да не излиза от контейнера */
+.richtext{
+  max-width: 100%;
+  overflow-wrap: anywhere;   /* чупи много дълги думи/URL-и */
+  word-break: break-word;    /* fallback */
+}
+
+.richtext *{
+  max-width: 100%;
+}
+
+.richtext p,
+.richtext li,
+.richtext div,
+.richtext span{
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* ако вътре има изображения */
+.richtext img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+/* ---- Gallery (more “postcard”) ---- */
+.gallery{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.gallery__item{
+  border-radius: 18px;
+  overflow:hidden;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.06);
+  box-shadow: 0 16px 45px rgba(0,0,0,.18);
+}
+
+.gallery__item img{
+  width:100%;
+  height: 230px;
+  object-fit: cover;
+  display:block;
+  transform: scale(1);
+  transition: transform .22s ease, filter .22s ease;
+}
+
+.gallery__item:hover img{
+  transform: scale(1.04);
+  filter: saturate(1.06);
+}
+
+/* ---- Location ---- */
+.map-card{
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.16);
+  overflow:hidden;
+
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.62)),
+    url("../images/map-location.jpg");
+  background-size: cover;
+  background-position: center;
+
+  min-height: 190px;
+  position: relative;
+  box-shadow: 0 18px 55px rgba(0,0,0,.20);
+}
+
+[data-theme="dark"] .map-card{
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.80)),
+    url("../images/map-location.jpg");
+}
+
+.map-link{ display:block; height:100%; text-decoration:none; }
+
+.map-overlay{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  padding: 14px;
+}
+
+.map-text{
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-align:center;
+  color: rgba(255,255,255,.96);
+  text-shadow: 0 14px 40px rgba(0,0,0,.35);
+}
+
+.location-line{
+  margin: 10px 0 0;
+  text-align:center;
+  color: rgba(255,255,255,.90);
+  font-weight: 900;
+}
+
+/* ---- Comments ---- */
+.comments{
+  display:grid;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.comment{
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(10,12,18,.18);
+  padding: 12px;
+}
+
+.comment__top{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.comment__name{ color: rgba(255,255,255,.96); }
+
+.comment__body{
+  margin-top: 8px;
+  color: rgba(255,255,255,.92);
+}
+
+.comment__meta{
+  margin-top: 8px;
+  color: rgba(255,255,255,.70);
+}
+
+/* likes */
+.comment__likes{
+  display:flex;
+  align-items:center;
+  gap: 6px;
+  font-weight: 900;
+  color: rgba(255,255,255,.88);
+}
+
+.like-heart{
+  border:0;
+  background: transparent;
+  color: rgba(255,255,255,.90);
+  font-size: 18px;
+  cursor:pointer;
+  padding: 4px 6px;
+}
+
+.like-heart.liked{
+  color: color-mix(in srgb, var(--orange) 85%, #ff3b3b);
+  filter: drop-shadow(0 10px 25px rgba(0,0,0,.22));
+}
+
+/* actions */
+.comment__actions{
+  display:flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.mini-btn{
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.92);
+  padding: 8px 10px;
+  font-weight: 900;
+  cursor:pointer;
+}
+
+.mini-btn--danger{
+  border-color: color-mix(in srgb, var(--burg) 45%, rgba(255,255,255,.18));
+}
+
+/* edit */
+.edit-form{ margin-top: 10px; display:grid; gap: 10px; }
+
+.edit-input{
+  width:100%;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.22);
+  padding: 12px 12px;
+  background: rgba(10,12,18,.22);
+  color: rgba(255,255,255,.95);
+  outline:none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.edit-actions{ display:flex; gap: 8px; flex-wrap: wrap; }
+
+/* add comment */
+.comment-form{
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.comment-input{
+  flex: 1 1 260px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.22);
+  padding: 12px 12px;
+
+  background: rgba(10,12,18,.22);
+  color: rgba(255,255,255,.95);
+
+  outline:none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* -------------------- Responsive -------------------- */
+@media (max-width: 980px){
+  .event-details__top{
+    flex-direction: column;
+  }
+
+  .status-card{
+    max-width: 100%;
+  }
+
+  .event-grid{
+    grid-template-columns: 1fr; /* 1 column */
+  }
+
+  .gallery{
+    grid-template-columns: 1fr; /* postcards one by one */
+  }
+
+  .gallery__item img{
+    height: 240px;
+  }
+}
+
+@media (max-width: 560px){
+  .event-details{ padding: 52px 0 64px; }
+
+  .event-header{ padding: 16px 14px; }
+
+  .status-controls{
+    grid-template-columns: 1fr;
+  }
+
+  .btn-pill{
+    width: 100%;
+  }
+
+  .gallery__item img{
+    height: 220px;
+  }
+}

@@ -1,0 +1,75 @@
+/* Section background and layout */
+.register-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../images/et43534.4b20b88a0131.jpg") center/cover no-repeat;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Form container */
+.register-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+}
+
+/* Form wrapper */
+.register-form-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Form fields style */
+.register-form-wrapper input[type="text"],
+.register-form-wrapper input[type="email"],
+.register-form-wrapper input[type="password"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #fbd0b9;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #fff;
+}
+
+.register-form-wrapper label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fbd0b9;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Submit button style */
+.register-btn {
+    display: block;
+    text-align: center;
+    background: linear-gradient(90deg, #f58d54, #f55c24);
+    color: #fff;
+    font-weight: bold;
+    padding: 0.75rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.register-btn:hover {
+    background: linear-gradient(90deg, #b47a59, #a14c28);
+}
+
+/* Hide default submit input */
+.hidden-submit {
+    display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 575px) {
+    .register-container {
+        padding: 1.5rem;
+        max-width: 90%;
+    }
+}

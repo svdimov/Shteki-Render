@@ -1,0 +1,178 @@
+/* register.css — glass register card + contacts-bg light/dark */
+
+.register-section{
+  position: relative;
+  padding: 56px 0 72px;
+  border-bottom: 1px solid var(--border);
+
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.42)),
+    url("../images/contacts-bg-light.80845a2ebbc2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+[data-theme="dark"] .register-section{
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,.62), rgba(0,0,0,.84)),
+    url("../images/contacts-bg-dark.9e7489ca7014.jpg");
+}
+
+/* soft highlights */
+.register-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(900px 520px at 18% 12%, rgba(255,255,255,.14), transparent 70%),
+    radial-gradient(820px 480px at 85% 35%, rgba(255,255,255,.08), transparent 70%);
+  opacity:.75;
+}
+[data-theme="dark"] .register-section::before{ opacity:.35; }
+
+.register-section > *{ position: relative; z-index: 1; }
+
+.register-container{
+  width: min(920px, 92vw);
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+}
+
+.register-form-wrapper{
+  width: min(560px, 100%);
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.18);
+
+  background: rgba(40, 57, 108, 0.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow: 0 28px 95px rgba(0,0,0,.26);
+  padding: 20px 18px;
+}
+
+[data-theme="dark"] .register-form-wrapper{
+  background: rgba(10,12,18,.44);
+  border-color: rgba(255,255,255,.14);
+  box-shadow: 0 34px 120px rgba(0,0,0,.50);
+}
+
+/* Django form output ({{ form }}) */
+.register-form-wrapper form{
+  display: grid;
+  gap: 12px;
+}
+
+.register-form-wrapper label{
+  display: inline-block;
+  margin: 6px 0 6px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: .2px;
+  color: rgba(255,255,255,.92);
+  text-shadow: 0 12px 35px rgba(0,0,0,.25);
+}
+
+.register-form-wrapper input,
+.register-form-wrapper textarea,
+.register-form-wrapper select{
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.22);
+  padding: 12px 12px;
+
+  background: rgba(255,255,255,.10);
+  color: rgba(255,255,255,.95);
+
+  outline: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.register-form-wrapper textarea{
+  min-height: 110px;
+  resize: vertical;
+}
+
+.register-form-wrapper input::placeholder,
+.register-form-wrapper textarea::placeholder{
+  color: rgba(255,255,255,.65);
+}
+
+.register-form-wrapper input:focus,
+.register-form-wrapper textarea:focus,
+.register-form-wrapper select:focus{
+  border-color: color-mix(in srgb, var(--orange) 65%, rgba(255,255,255,.22));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--orange) 20%, transparent);
+}
+
+/* select dropdown options (ограничено по браузър) */
+.register-form-wrapper select option{
+  background: rgba(10,12,18,.92);
+  color: #fff;
+}
+
+/* errors */
+.register-form-wrapper .errorlist{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.register-form-wrapper .errorlist li{
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--burg) 35%, rgba(255,255,255,.18));
+  background: rgba(135, 10, 44, .22);
+  color: rgba(255,255,255,.95);
+  padding: 10px 12px;
+  font-weight: 800;
+}
+
+/* submit */
+.register-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 8px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--orange) 55%, #000);
+
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--orange) 92%, #fff),
+    var(--orange)
+  );
+
+  color: #1b1303;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: .25px;
+
+  cursor: pointer;
+  box-shadow: 0 18px 55px rgba(0,0,0,.22);
+  transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+}
+
+.register-btn:hover{
+  filter: brightness(.98) saturate(1.06);
+  box-shadow: 0 22px 70px rgba(0,0,0,.26);
+}
+
+.register-btn:active{
+  transform: translateY(1px);
+}
+
+/* mobile */
+@media (max-width: 560px){
+  .register-section{ padding: 44px 0 56px; }
+  .register-form-wrapper{ padding: 16px 12px; }
+  .register-btn{ width: 100%; }
+}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/delete-profile.css' %}" media="screen">
+
+<section class="delete-profile u-section-1">
+  <div class="delete-profile__inner">
+
+    <h4 class="delete-profile__title">
+      {% trans 'Are you sure you want to delete your account?' %}
+    </h4>
+
+    <p class="delete-profile__hint">
+      {% trans "This action is permanent and cannot be undone." %}
+    </p>
+
+    <form method="post" action="" class="delete-profile__actions">
+      {% csrf_token %}
+
+      <button type="submit" class="btn-danger">
+        {% trans "Delete" %}
+      </button>
+
+
+      <a class="btn-cancel" href="{% url 'profile-details' request.user.pk %}">
+        {% trans "Cancel" %}
+      </a>
+
+
+    </form>
+
+  </div>
+</section>
+{% endblock %}

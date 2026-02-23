@@ -1,0 +1,38 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: url('/static/images/37.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+}
+
+/* Optional dark overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+/* Ensure footer stays transparent too */
+footer {
+    background: transparent;
+    color: white;
+}
+
+/* Container fix */
+.locked-container {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    color: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin: 100px auto;
+    max-width: 500px;
+    text-align: center;
+}

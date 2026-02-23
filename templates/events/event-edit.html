@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/event-edit.css' %}" media="screen">
+    <section class="u-align-center u-clearfix u-container-align-center u-image u-shading u-section-1" id="carousel_790c" data-image-width="1980" data-image-height="1243">
+      <div class="u-clearfix u-sheet u-valign-middle-lg u-sheet-1">
+        <div class="u-container-style u-group u-palette-2-light-3 u-radius u-shape-round u-group-1">
+          <div class="u-container-layout u-container-layout-1">
+            <h4 class="u-text u-text-default u-text-1">CREATE EVENT </h4>
+            <div class="u-form u-form-1">
+              <form action="https://forms.nicepagesrv.com/v2/form/process" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
+                <div class="u-form-group u-form-name">
+                  <label for="name-97a2" class="u-label">Event Name</label>
+                  <input type="text" placeholder="Enter event name" id="name-97a2" name="name" class="u-border-palette-2-base u-input u-input-rectangle u-text-palette-2-base" required="">
+                </div>
+                <div class="u-form-email u-form-group">
+                  <label for="email-97a2" class="u-label">Location</label>
+                  <input type="email" placeholder="Enter location" id="email-97a2" name="email" class="u-border-palette-2-base u-input u-input-rectangle u-text-palette-2-base" required="">
+                </div>
+                <div class="u-form-group u-form-message">
+                  <label for="message-97a2" class="u-label">Description</label>
+                  <textarea rows="4" cols="50" id="message-97a2" name="message" class="u-border-palette-2-base u-input u-input-rectangle u-text-palette-2-base" required=""></textarea>
+                </div>
+                <div class="u-form-group u-form-group-4">
+                  <label for="text-8496" class="u-label">days</label>
+                  <input type="text" placeholder="Enter days" id="text-8496" name="text" class="u-border-palette-2-base u-input u-input-rectangle u-text-palette-2-base">
+                </div>
+                <div class="u-form-group u-form-select u-form-group-5">
+                  <label for="select-2e46" class="u-label">Set Status</label>
+                  <div class="u-form-select-wrapper">
+                    <select id="select-2e46" name="select" class="u-border-palette-2-base u-input u-input-rectangle u-text-palette-2-base">
+                      <option value="I will attend" data-calc="">I will attend</option>
+                      <option value="Maybe" data-calc="">Maybe</option>
+                      <option value="I can't attend" data-calc="">I can't attend</option>
+                    </select>
+                    <svg class="u-caret u-caret-svg u-text-palette-2-base" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
+                  </div>
+                </div>
+                <div class="u-form-group u-form-group-6">
+                  <label for="text-ad30" class="u-label">Start Date </label>
+                  <input type="text" placeholder="Enter date " id="text-ad30" name="text-1" class="u-border-palette-2-base u-input u-input-rectangle u-text-palette-2-base">
+                </div>
+                <div class="u-form-group u-form-group-7">
+                  <label for="text-a6da" class="u-label">City</label>
+                  <input type="text" placeholder="Enter city" id="text-a6da" name="text-2" class="u-border-palette-2-base u-input u-input-rectangle u-text-palette-2-base">
+                </div>
+                <div class="u-align-left u-form-group u-form-submit">
+                  <a href="#" class="u-btn u-btn-submit u-button-style">Even image </a>
+                  <input type="submit" value="submit" class="u-form-control-hidden">
+                </div>
+                <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+                <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+                <input type="hidden" value="" name="recaptchaResponse">
+                <input type="hidden" name="formServices" value="3474b205-8b3f-ad1c-9978-94b908b4a057">
+              </form>
+            </div><span class="u-icon u-text-palette-2-base u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 52 52" style=""><use xlink:href="#"></use></svg><svg class="u-svg-content" viewBox="0 0 52 52" x="0px" y="0px" id="svg-08da" style="enable-background:new 0 0 52 52;"><path style="fill:currentColor;" d="M38.853,5.324L38.853,5.324c-7.098-7.098-18.607-7.098-25.706,0h0
+	C6.751,11.72,6.031,23.763,11.459,31L26,52l14.541-21C45.969,23.763,45.249,11.72,38.853,5.324z M26.177,24c-3.314,0-6-2.686-6-6
+	s2.686-6,6-6s6,2.686,6,6S29.491,24,26.177,24z"></path></svg></span>
+          </div>
+        </div>
+        <a href="#" class="u-active-white u-align-center u-border-2 u-border-active-white u-border-hover-white u-border-white u-btn u-btn-round u-button-style u-color-var u-hover-color-var u-radius-50 u-btn-2" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500">make event </a>
+      </div>
+    </section>
+    
+    
+{% endblock %}

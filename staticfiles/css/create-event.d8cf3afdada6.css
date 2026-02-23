@@ -1,0 +1,90 @@
+/* Ensure styling applies only to .custom-event-form to avoid conflicts */
+.custom-event-form {
+  background: #FEEEE8;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Background image for the entire section */
+.u-section-1 {
+  background-image: linear-gradient(0deg, rgba(51, 44, 41, 0.65), rgba(51, 44, 41, 0.65)), url("../images/camping-min.671cec12c3f6.jpg") !important;
+  background-position: center center;
+  background-size: cover;
+}
+
+.custom-event-form input,
+.custom-event-form textarea,
+.custom-event-form select {
+  background-color: #fff;
+  border: 2px solid #f58d54;
+  border-radius: 8px;
+  padding: 8px;
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.custom-event-form input:focus,
+.custom-event-form textarea:focus,
+.custom-event-form select:focus {
+  outline: none;
+  border-color: #f58d54;
+  box-shadow: 0 0 5px rgba(245, 141, 84, 0.7);
+}
+
+.custom-event-form label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+  color: #f58d54;
+  font-size: 0.85rem;
+}
+
+.custom-event-form .u-btn-submit {
+  background-color: #f58d54;
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 16px;
+  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.custom-event-form .u-btn-submit:hover {
+  background-color: #e6763d;
+}
+.custom-event-form-heading {
+  text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.8); /* Red shadow */
+  color: #F58D54; /* Optional: ensure it's readable on background */
+}
+.u-group-1.custom-event-form-box {
+  background-color: #FEEEE8 !important;
+}
+
+
+.custom-save-button {
+  background-color: #f58d54;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.custom-save-button:hover {
+  background-color: #e6763d;
+}
+
+.custom-save-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(245, 141, 84, 0.4);
+}

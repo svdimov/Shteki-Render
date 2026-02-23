@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/acount-login.css' %}" media="screen">
+<div class="locked-container">
+
+
+    <h2 class="locked-title">{% trans 'Your account is locked' %}</h2>
+    <p class="locked-message">
+        {% trans 'You have attempted to login too many times. A password reset link has been sent to your email.' %}
+    </p>
+    <p><a href="{% url 'password_reset' %}" class="reset-link">{% trans 'Send link to email' %}</a></p>
+</div>
+{% endblock %}

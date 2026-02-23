@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+    <link rel="stylesheet" href="{% static 'css/profile-details.css' %}" media="screen">
+
+    <section
+            class="u-clearfix u-image u-shading u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xs u-section-1"
+            id="carousel_3d89">
+        <div class="u-clearfix u-sheet u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xs u-sheet-1">
+
+            <h3 class="u-align-right u-custom-font u-font-georgia u-text u-text-color-var u-text-default u-text-1">
+                {{ profile.full_name }}
+            </h3>
+
+            <img src="{{ profile.profile_picture_or_default }} "
+                 alt="Profile Picture"
+                 class="u-align-right u-border-20 u-border-palette-1-base u-image u-image-circle u-image-1"
+                 width="337" height="337"
+                 data-image-width="1350" data-image-height="1800"
+                 data-animation-name="customAnimationIn"
+                 data-animation-duration="1500" data-animation-delay="750">
+
+            <div class="profile-actions">
+                <a class="u-btn u-btn-1"
+                   href="{% url 'edit-profile' request.user.pk %}">{% trans "change profile" %}</a>
+                <a class="u-btn u-btn-3" href="{% url 'password-change' %}">{% trans "change password" %}</a>
+                <a class="u-btn u-btn-2"
+                   href="{% url 'delete-profile' request.user.pk %}">{% trans "delete profile" %}</a>
+            </div>
+
+
+        </div>
+    </section>
+
+{% endblock %}

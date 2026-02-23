@@ -1,0 +1,109 @@
+/* === Background section === */
+.u-section-1 {
+  background-image: url("../images/452545.5292f98c22a1.jpg");
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 60px;
+}
+
+/* === Form box === */
+.u-section-1 .u-sheet-1 {
+  background-image: linear-gradient(0deg, rgba(51, 44, 41, 0.65), rgba(51, 44, 41, 0.65)), url("../images/et43534.4b20b88a0131.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  padding: 30px;
+  max-width: 400px;
+  width: 100%;
+
+  /* Center contents vertically and horizontally */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === Form layout === */
+.u-form-1 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center all form elements horizontally */
+  gap: 15px;
+}
+
+.u-form-1 p {
+  width: 100%; /* Ensure full width */
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+/* === Label styling === */
+.u-form-1 p label {
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  font-weight: normal;
+  text-align: left;
+}
+
+/* === Custom fields for login form === */
+.login-form-input {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 20px;
+  border: none;
+  padding: 10px 15px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #111;
+}
+
+/* === Custom login button identical to input fields === */
+.login-form-button {
+  width: 100%; /* Make button same width as fields */
+  box-sizing: border-box;
+  border-radius: 20px;
+  border: none;
+  padding: 10px 15px;
+  background-color: #f58d54;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.login-form-button:hover {
+  background-color: #e87a40;
+}
+
+/* === Text links === */
+.u-text-default {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: #fff;
+}
+
+.u-text-1, .u-text-2 {
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-top: 15px;
+}
+
+.u-text-1 a:hover, .u-text-2 a:hover {
+  color: #e87a40 !important;
+}
+
+/* === Error styling === */
+.u-form-send-error {
+  background: #f95d51;
+  color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  text-align: center;
+}

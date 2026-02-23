@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/event-delete.css' %}" media="screen">
+
+<section class="u-align-center u-clearfix u-image u-shading u-section-1" id="carousel_790c" data-image-width="868"
+         data-image-height="868">
+    <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-sheet-1">
+
+        <h4 class="u-text u-text-default u-text-1">{% trans "Are you sure you want to delete this event?" %}</h4>
+
+        <form method="post" action="">
+            {% csrf_token %}
+            <button type="submit" class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-1">
+                {% trans "Delete Event" %}
+            </button>
+        </form>
+
+    </div>
+</section>
+{% endblock %}

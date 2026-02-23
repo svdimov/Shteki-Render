@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+  {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/contacts.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  {% endblock %}
+
+  <!-- HERO / CONTACT INFO -->
+  <section class="contact-hero" aria-labelledby="contactTitle">
+    <div class="contact-hero__inner">
+      <div class="contact-hero__grid">
+
+        <!-- Left visual -->
+        <div class="contact-visual" aria-hidden="true">
+          <div class="contact-visual__ring"></div>
+          <div class="contact-visual__photo"></div>
+          <div class="contact-visual__dot"></div>
+        </div>
+
+        <!-- Right info card -->
+        <div class="contact-card">
+          <h2 class="contact-card__title" id="contactTitle">{% trans "Contact Us" %}</h2>
+          <div class="contact-card__line" aria-hidden="true"></div>
+
+          <div class="contact-card__rows">
+            <p class="contact-row">
+              <span class="contact-row__label">{% trans "Phone" %}</span>
+              <a class="contact-row__value" href="tel:+359877096911">+359 877 096 911</a>
+            </p>
+
+            <p class="contact-row">
+              <span class="contact-row__label">{% trans "Address" %}</span>
+              <span class="contact-row__value">{% trans "str. Nish 8 , Veliko Tarnovo" %}</span>
+            </p>
+
+            <p class="contact-row">
+              <span class="contact-row__label">{% trans "Mail" %}</span>
+              <a class="contact-row__value" href="mailto:izkrivenishteki@yahoo.com">izkrivenishteki@yahoo.com</a>
+            </p>
+          </div>
+
+          <div class="contact-social">
+            <a class="social-pill" target="_blank" rel="noopener"
+               href="https://www.facebook.com/groups/987216818883275" aria-label="Facebook">
+              <i class="fab fa-facebook-f" aria-hidden="true"></i>
+              <span>Facebook</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="contact-form" aria-labelledby="formTitle">
+    <div class="contact-form__inner">
+      <h2 class="contact-form__title" id="formTitle">{% trans "Get in touch" %}</h2>
+
+      <form method="post" action="{% url 'contacts' %}" class="form-card" novalidate>
+        {% csrf_token %}
+
+        {% if form.errors %}
+          <div class="form-errors" role="alert">
+            <strong>{% trans "Please fix the errors below." %}</strong>
+            <ul>
+              {% for field in form %}
+                {% for error in field.errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="id_name">{% trans "Name" %}</label>
+            <input type="text" name="name" id="id_name" placeholder="{% trans 'Enter your name' %}"
+                   value="{{ form.name.value|default_if_none:'' }}" required>
+          </div>
+
+          <div class="field">
+            <label for="id_email">{% trans "Email" %}</label>
+            <input type="email" name="email" id="id_email" placeholder="{% trans 'Enter your email' %}"
+                   value="{{ form.email.value|default_if_none:'' }}" required>
+          </div>
+
+          <div class="field field--full">
+            <label for="id_message">{% trans "Message" %}</label>
+            <textarea name="message" id="id_message" rows="6" placeholder="{% trans 'Enter your message' %}" required>{{ form.message.value|default_if_none:'' }}</textarea>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">
+            {% trans "Send Message" %}
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+{% endblock %}

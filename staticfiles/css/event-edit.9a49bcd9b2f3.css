@@ -1,0 +1,161 @@
+ .u-section-1 {
+  background-image: linear-gradient(0deg, rgba(51, 44, 41, 0.65), rgba(51, 44, 41, 0.65)), url("../images/camping-min.671cec12c3f6.jpg");
+  background-position: 50% 50%;
+}
+
+.u-section-1 .u-sheet-1 {
+  min-height: 1460px;
+}
+
+.u-section-1 .u-group-1 {
+  --radius: 30px;
+  width: 597px;
+  min-height: 927px;
+  height: auto;
+  margin: 83px auto 0 251px;
+}
+
+.u-section-1 .u-container-layout-1 {
+  padding: 0 24px;
+}
+
+.u-section-1 .u-text-1 {
+  margin: 27px auto 0;
+}
+
+.u-section-1 .u-form-1 {
+  height: 756px;
+  width: 451px;
+  margin: 27px auto 0;
+}
+
+.u-section-1 .u-form-group-4 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-form-group-5 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-form-group-6 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-form-group-7 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-icon-1 {
+  width: 28px;
+  height: 28px;
+  margin: -621px auto 593px 21px;
+  padding: 0;
+}
+
+.u-section-1 .u-btn-2 {
+  border-style: solid;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1.125rem;
+  background-image: none;
+  --animation-custom_in-translate_x: 0px;
+  --animation-custom_in-translate_y: 0px;
+  --animation-custom_in-opacity: 0;
+  --animation-custom_in-rotate: 0deg;
+  --animation-custom_in-scale: 0.3;
+  --hover-color-var: #f8ae86;
+  --color-var: #f58d54;
+  margin: 59px auto 60px 421px;
+  padding: 20px 55px 21px 54px;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 1204px;
+  }
+
+  .u-section-1 .u-group-1 {
+    height: auto;
+  }
+
+  .u-section-1 .u-btn-2 {
+    margin-left: 221px;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 1119px;
+  }
+
+  .u-section-1 .u-group-1 {
+    margin-top: 85px;
+    margin-left: auto;
+  }
+
+  .u-section-1 .u-btn-2 {
+    margin-top: 38px;
+    margin-right: 213px;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 839px;
+  }
+
+  .u-section-1 .u-group-1 {
+    width: 540px;
+  }
+
+  .u-section-1 .u-container-layout-1 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .u-section-1 .u-btn-2 {
+    margin-right: 33px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 1099px;
+  }
+
+  .u-section-1 .u-group-1 {
+    width: 340px;
+  }
+
+  .u-section-1 .u-form-1 {
+    width: 320px;
+  }
+
+  .u-section-1 .u-btn-2 {
+    margin-right: auto;
+  }
+}
+ .custom-save-button {
+  background-color: #f58d54;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.custom-save-button:hover {
+  background-color: #e6763d;
+}
+
+.custom-save-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(245, 141, 84, 0.4);
+}

@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/members.css' %}" media="screen">
+    <section
+            class="u-clearfix u-container-align-center-lg u-container-align-center-md u-container-align-center-sm u-container-align-center-xl u-image u-shading u-section-1"
+            id="sec-0291">
+        <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1">
+            <h2 class="u-align-center u-text u-text-default u-text-1" data-animation-name="customAnimationIn"
+                data-animation-duration="1500" data-animation-out="0">   {% trans 'Administrators' %} · {{ administrator_count }} </h2>
+            <div class="u-expanded-width u-list u-list-1">
+                <div class="u-repeater u-repeater-1">
+                    <div class="u-container-style u-grey-50 u-list-item u-radius-32 u-repeater-item u-shape-round u-list-item-1"
+                         data-animation-out="0" data-animation-name="customAnimationIn" data-animation-duration="1500">
+                        <div class="u-container-layout u-similar-container u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xs u-container-layout-1">
+                            <h4 class="u-align-center u-text u-text-default u-text-2" data-animation-name="fadeIn"
+                                data-animation-duration="1000" data-animation-delay="0" data-animation-out="0">ATANAS
+                                HINOV - ASH </h4>
+                            <div class="u-align-center u-border-3 u-border-grey-30 u-line u-line-horizontal u-opacity u-opacity-45 u-line-1"></div>
+                            <img class="u-border-9 u-border-palette-1-base u-image u-image-circle u-preserve-proportions u-image-1"
+                                 alt="" data-image-width="1080" data-image-height="1080"
+                                 src="{% static 'images/Ash.jpg' %}"
+                                 data-animation-name="customAnimationIn" data-animation-duration="1500"
+                                 data-animation-delay="750" data-animation-out="0">
+                        </div>
+                    </div>
+                    <div class="u-container-style u-grey-50 u-list-item u-radius-32 u-repeater-item u-shape-round u-list-item-2"
+                         data-animation-out="0" data-animation-name="customAnimationIn" data-animation-duration="1500">
+                        <div class="u-container-layout u-similar-container u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xs u-container-layout-2">
+                            <h4 class="u-align-center u-text u-text-default u-text-3" data-animation-name="fadeIn"
+                                data-animation-duration="1000" data-animation-delay="0" data-animation-out="0">TIHOMIR
+                                VENCISLAVOV </h4>
+                            <div class="u-align-center u-border-3 u-border-grey-30 u-line u-line-horizontal u-opacity u-opacity-45 u-line-2"></div>
+                            <img class="u-border-9 u-border-palette-1-base u-image u-image-circle u-preserve-proportions u-image-2"
+                                 alt="" data-image-width="1536" data-image-height="2048"
+                                 src="{% static 'images/Tisho.jpg' %}"
+                                 data-animation-name="customAnimationIn" data-animation-duration="1500"
+                                 data-animation-delay="750" data-animation-out="0">
+                        </div>
+                    </div>
+                    <div class="u-container-style u-grey-50 u-list-item u-radius-32 u-repeater-item u-shape-round u-list-item-3"
+                         data-animation-out="0" data-animation-name="customAnimationIn" data-animation-duration="1500">
+                        <div class="u-container-layout u-similar-container u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xs u-container-layout-3">
+                            <h4 class="u-align-center u-text u-text-default u-text-4" data-animation-name="fadeIn"
+                                data-animation-duration="1000" data-animation-delay="0" data-animation-out="0">SIMOEN
+                                DENEV</h4>
+                            <div class="u-align-center u-border-3 u-border-grey-30 u-line u-line-horizontal u-opacity u-opacity-45 u-line-3"></div>
+                            <img class="u-border-9 u-border-palette-1-base u-image u-image-circle u-preserve-proportions u-image-3"
+                                 alt="" data-image-width="200" data-image-height="200"
+                                 src="{% static 'images/Monkata.jpg' %}"
+                                 data-animation-name="customAnimationIn" data-animation-duration="1500"
+                                 data-animation-delay="750" data-animation-out="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section
+            class="u-clearfix u-container-align-center-lg u-container-align-center-md u-container-align-center-sm u-container-align-center-xl u-image u-shading u-section-2"
+            id="sec-8425">
+        <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1">
+            <h2 class="u-align-center u-text u-text-default u-text-1" data-animation-name="customAnimationIn"
+                data-animation-duration="1500" data-animation-out="0"> {% trans 'Moderators' %}·&nbsp;{{ moderator_count }} </h2>
+            <div class="u-expanded-width u-list u-list-1">
+                <div class="u-repeater u-repeater-1">
+                    <div class="u-container-align-center u-container-style u-grey-50 u-list-item u-radius-32 u-repeater-item u-shape-round u-list-item-1"
+                         data-animation-direction="Up" data-animation-name="customAnimationIn"
+                         data-animation-duration="1500" data-animation-out="0">
+                        <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
+                            <h4 class="u-align-center u-text u-text-default u-text-2">Maria jibalova</h4>
+                            <div class="u-align-center u-border-3 u-border-grey-30 u-line u-line-horizontal u-opacity u-opacity-45 u-line-1"></div>
+                            <img class="u-border-9 u-border-palette-1-base u-image u-image-circle u-preserve-proportions u-image-1"
+                                 alt="" data-image-width="960" data-image-height="960"
+                                 src="{% static 'images/maria_J.jpg' %}"
+                                 data-animation-name="customAnimationIn" data-animation-duration="1500"
+                                 data-animation-delay="750" data-animation-out="0">
+                        </div>
+                    </div>
+                    <div class="u-container-style u-grey-50 u-list-item u-radius-32 u-repeater-item u-shape-round u-list-item-2"
+                         data-animation-direction="Up" data-animation-name="customAnimationIn"
+                         data-animation-duration="1500" data-animation-out="0">
+                        <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2">
+                            <h4 class="u-align-center u-text u-text-default u-text-3">Marian donchev</h4>
+                            <div class="u-align-center u-border-3 u-border-grey-30 u-line u-line-horizontal u-opacity u-opacity-45 u-line-2"></div>
+                            <img class="u-border-9 u-border-palette-1-base u-image u-image-circle u-preserve-proportions u-image-2"
+                                 alt="" data-image-width="1071" data-image-height="1069"
+                                 src="{% static 'images/Marian.jpg' %}"
+                                 data-animation-name="customAnimationIn" data-animation-duration="1500"
+                                 data-animation-delay="750" data-animation-out="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section
+            class="u-clearfix u-container-align-center-lg u-container-align-center-md u-container-align-center-sm u-container-align-center-xl u-image u-shading u-section-3"
+            id="sec-5368">
+        <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1">
+            <h2 class="u-align-center u-text u-text-default u-text-1" data-animation-name="customAnimationIn"
+                data-animation-duration="1500" data-animation-out="0">{% trans 'Collaborators' %} · {{ collaborator_count }} </h2>
+            <div class="u-expanded-width u-list u-list-1">
+                <div class="u-repeater u-repeater-1">
+                    <div class="u-container-align-center u-container-style u-grey-50 u-list-item u-radius-32 u-repeater-item u-shape-round u-list-item-1"
+                         data-animation-direction="Up" data-animation-name="customAnimationIn"
+                         data-animation-duration="1500" data-animation-out="0">
+                        <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
+                            <h4 class="u-align-center u-text u-text-default u-text-2">Stefan Dimov </h4>
+                            <div class="u-align-center u-border-3 u-border-grey-30 u-line u-line-horizontal u-opacity u-opacity-45 u-line-1"></div>
+                            <img class="u-border-9 u-border-palette-1-base u-image u-image-circle u-preserve-proportions u-image-1"
+                                 alt="" data-image-width="1350" data-image-height="1800"
+                                 src="{% static 'images/svd.jpg' %}"
+                                 data-animation-name="customAnimationIn" data-animation-duration="1500"
+                                 data-animation-delay="750" data-animation-out="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section
+            class="u-clearfix u-container-align-center-lg u-container-align-center-md u-container-align-center-sm u-container-align-center-xl u-image u-shading u-section-4"
+            id="sec-f6ce">
+
+        <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+
+            <!-- Title -->
+            <h2 class="u-align-center u-text u-text-default u-text-1">
+                {% trans 'ALL MEMBERS' %} · {{ total_profiles }}
+            </h2>
+
+            <!-- Member List -->
+            <div class="u-expanded-width u-list u-list-1" id="profiles-list">
+                <div class="u-repeater u-repeater-1">
+                    {% for profile in profiles %}
+                        <div class="u-container-style u-grey-50 u-list-item u-radius-32 u-repeater-item u-shape-round">
+                            <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
+
+                                <h4 class="u-align-center u-text u-text-default u-text-2">
+                                    {{ profile.full_name }}
+                                </h4>
+
+                                <div class="u-align-center u-border-3 u-border-grey-30 u-line u-line-horizontal u-opacity u-opacity-45 u-line-1"></div>
+
+                                <img class="u-border-9 u-border-palette-1-base u-image u-image-circle u-preserve-proportions u-image-1"
+                                     src="{{ profile.profile_picture_or_default }}"
+                                     alt="Profile Picture"
+                                     data-animation-name="customAnimationIn"
+                                     data-animation-duration="1500"
+                                     data-animation-delay="750"
+                                     data-animation-out="0">
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            {% if page_obj.has_other_pages %}
+                <div class="my-pagination" id="profiles-pagination">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">« First</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">‹ Previous</a>
+                    {% endif %}
+
+                    <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">Next ›</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">Last »</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+        </div>
+    </section>
+
+    <script src="{% static 'js/about-pagination.js' %}"></script>
+
+{% endblock %}

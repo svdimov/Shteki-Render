@@ -1,0 +1,351 @@
+/* create-event.css — for your exact create-event.html */
+
+/* ---------- SECTION BACKGROUND ---------- */
+.u-section-1{
+  position: relative;
+  padding: 60px 0 74px;
+  border-bottom: 1px solid var(--border);
+
+ background-image: linear-gradient(180deg, rgba(19, 17, 17, 0.21), rgba(0,0,0,.42)), url("../images/camping-min.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+[data-theme="dark"] .u-section-1{
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,.58), rgba(0,0,0,.84)),
+    url("../images/camping-min.jpg");
+}
+
+/* subtle fog layer */
+.u-section-1::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(900px 520px at 20% 10%, rgba(255,255,255,.22), transparent 70%),
+    radial-gradient(820px 520px at 85% 40%, rgba(255,255,255,.14), transparent 70%);
+  opacity: .55;
+}
+[data-theme="dark"] .u-section-1::before{ opacity: .22; }
+
+.u-section-1 > *{ position: relative; z-index: 1; }
+
+/* ---------- PAGE CONTAINER ---------- */
+.u-section-1 .u-sheet-1{
+  width: min(600px, 92vw);
+  margin: 0 auto;
+}
+
+/* Center the whole card */
+.u-container-layout-1{
+  width: min(860px, 100%);
+  margin: 0 auto;
+
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.20);
+  background: rgba(10,12,18,.34);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  box-shadow: 0 26px 95px rgba(0,0,0,.26);
+  padding: 18px;
+}
+
+[data-theme="dark"] .u-container-layout-1{
+  background: rgba(10,12,18,.46);
+  border-color: rgba(255,255,255,.14);
+  box-shadow: 0 28px 110px rgba(0,0,0,.52);
+}
+
+/* ---------- TITLE ---------- */
+.u-text-1{
+  text-align: center;
+  margin: 0 0 16px;
+
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: .22px;
+  font-size: clamp(22px, 2.6vw, 34px);
+
+  color: rgba(255,255,255,.96);
+  text-shadow:
+    0 2px 10px rgba(0,0,0,.45),
+    0 20px 70px rgba(0,0,0,.25);
+}
+
+/* ---------- FORM WRAPPER ---------- */
+.u-form-1{
+  width: 100%;
+}
+
+.custom-event-form form{
+  width: 100%;
+}
+
+/* Django default form output (often <p> wrappers) */
+.custom-event-form form p{
+  margin: 0 0 14px;
+}
+
+/* labels (Django renders <label> for fields) */
+.custom-event-form label{
+  display: inline-block;
+  margin: 0 0 6px;
+
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: .18px;
+
+  color: rgba(255,255,255,.92);
+  text-shadow: 0 10px 25px rgba(0,0,0,.28);
+}
+
+/* inputs / selects / textarea */
+.custom-event-form input[type="text"],
+.custom-event-form input[type="email"],
+.custom-event-form input[type="url"],
+.custom-event-form input[type="date"],
+.custom-event-form input[type="time"],
+.custom-event-form input[type="number"],
+.custom-event-form input[type="file"],
+.custom-event-form select,
+.custom-event-form textarea{
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.95);
+  padding: 12px 12px;
+  outline: none;
+
+  transition: border-color .12s ease, box-shadow .12s ease, background .12s ease;
+}
+/* ---------- FILE INPUT (Choose file) ---------- */
+.custom-event-form input[type="file"]{
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.92);
+  cursor: pointer;
+
+  transition: border-color .12s ease, box-shadow .12s ease, background .12s ease;
+}
+
+.custom-event-form input[type="file"]:hover{
+  background: rgba(255,255,255,.10);
+  border-color: rgba(255,255,255,.30);
+}
+
+.custom-event-form input[type="file"]:focus{
+  outline: none;
+  border-color: color-mix(in srgb, var(--orange) 55%, rgba(255,255,255,.22));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--orange) 18%, transparent);
+}
+
+/* Chrome / Edge / modern browsers */
+.custom-event-form input[type="file"]::file-selector-button{
+  margin-right: 12px;
+  border: 1px solid color-mix(in srgb, var(--orange) 55%, #000);
+  border-radius: 999px;
+  padding: 10px 14px;
+
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--orange) 92%, #fff),
+    var(--orange)
+  );
+  color: #1b1303;
+
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: .2px;
+  cursor: pointer;
+
+  box-shadow: 0 14px 40px rgba(0,0,0,.16);
+  transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+}
+
+.custom-event-form input[type="file"]::file-selector-button:hover{
+  filter: brightness(.98) saturate(1.05);
+  box-shadow: 0 18px 55px rgba(0,0,0,.20);
+}
+
+.custom-event-form input[type="file"]::file-selector-button:active{
+  transform: translateY(1px);
+}
+
+/* Safari / iOS fallback */
+.custom-event-form input[type="file"]::-webkit-file-upload-button{
+  margin-right: 12px;
+  border: 1px solid color-mix(in srgb, var(--orange) 55%, #000);
+  border-radius: 999px;
+  padding: 10px 14px;
+
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--orange) 92%, #fff),
+    var(--orange)
+  );
+  color: #1b1303;
+
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: .2px;
+  cursor: pointer;
+
+  box-shadow: 0 14px 40px rgba(0,0,0,.16);
+}
+
+
+.custom-event-form textarea{
+  min-height: 140px;
+  resize: vertical;
+}
+
+.custom-event-form input::placeholder,
+.custom-event-form textarea::placeholder{
+  color: rgba(255,255,255,.70);
+}
+
+.custom-event-form input:focus,
+.custom-event-form select:focus,
+.custom-event-form textarea:focus{
+  border-color: color-mix(in srgb, var(--orange) 55%, rgba(255,255,255,.22));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--orange) 20%, transparent);
+  background: rgba(255,255,255,.10);
+}
+
+/* helptext (Django) */
+.custom-event-form .helptext{
+  display:block;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(255,255,255,.72);
+}
+
+/* error list (Django) */
+.custom-event-form .errorlist{
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  border-radius: 16px;
+
+  border: 1px solid color-mix(in srgb, var(--burg) 40%, rgba(255,255,255,.18));
+  background: color-mix(in srgb, var(--burg) 18%, rgba(0,0,0,.35));
+  color: rgba(255,255,255,.94);
+
+  box-shadow: 0 18px 55px rgba(0,0,0,.18);
+}
+.custom-event-form .errorlist li{ margin: 4px 0; }
+
+/* ---------- SUBMIT AREA ---------- */
+.u-form-submit{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Hide the <a> fake button (optional) */
+.u-form-submit .u-btn-submit{
+  display: none;
+}
+
+/* Make the REAL submit visible and styled */
+.u-form-control-hidden{
+  display: inline-flex !important;
+  width: auto !important;
+  height: auto !important;
+
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--orange) 55%, #000);
+
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--orange) 92%, #fff),
+    var(--orange)
+  );
+
+  color: #1b1303;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: .2px;
+
+  cursor: pointer;
+  box-shadow: 0 18px 60px rgba(0,0,0,.20);
+  transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+}
+
+.u-form-control-hidden:hover{
+  filter: brightness(.98) saturate(1.05);
+  box-shadow: 0 22px 80px rgba(0,0,0,.24);
+}
+
+.u-form-control-hidden:active{
+  transform: translateY(1px);
+}
+
+.u-form-control-hidden:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 4px var(--focus), 0 22px 80px rgba(0,0,0,.24);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 820px){
+  .u-section-1{ padding: 54px 0 62px; }
+  .u-container-layout-1{ padding: 16px; border-radius: 18px; }
+}
+
+@media (max-width: 400px){
+  .u-section-1{ padding: 44px 0 54px; }
+  .u-container-layout-1{ padding: 14px; }
+
+  .custom-event-form input,
+  .custom-event-form select,
+  .custom-event-form textarea{
+    border-radius: 12px;
+    padding: 11px 11px;
+  }
+
+  .u-form-control-hidden{
+    width: 100% !important;
+    justify-content: center;
+  }
+}
+/* 1) Самото поле (select) — прозрачно + blur + бял текст */
+.custom-event-form select,
+.custom-event-form option {
+  color: #fff;
+}
+
+.custom-event-form select{
+  background: rgba(10,12,18,.35) !important;
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* focus да НЕ става бяло */
+.custom-event-form select:focus,
+.custom-event-form select:active{
+  background: rgba(10,12,18,.42) !important;
+  outline: none;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--orange) 18%, transparent);
+}
+
+/* 2) Опции (items) — бели + тъмен фон (работи най-вече на desktop) */
+.custom-event-form select option{
+  background: rgba(10,12,18,.92);
+  color: #fff;
+}
+
+/* 3) Ако имаш <optgroup> */
+.custom-event-form select optgroup{
+  background: rgba(10,12,18,.92);
+  color: #fff;
+}

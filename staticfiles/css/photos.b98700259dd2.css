@@ -1,0 +1,401 @@
+/* Общ фон за секция 1 */
+.u-section-1 {
+  background-image: url("../images/photo-1519904981063-b0cf448d479e.46b831931519.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 1455px;
+}
+
+/* Общ фон за секция 2 */
+.u-section-2 {
+  background-image: url("../images/photo-1519904981063-b0cf448d479e.46b831931519.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 1455px;
+}
+
+/* Общи стилове за бутоните */
+.u-btn-1,
+.u-btn-2 {
+  --radius: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 1px;
+  padding: 15px 71px 16px 69px;
+}
+
+/* Центриране на заглавието */
+
+
+/* Стилове за групите в секция 1 и 2 */
+.u-section-1 .u-group-1,
+.u-section-2 .u-group-1 {
+  width: 999px;
+  min-height: 892px;
+  --radius: 60px;
+  margin: 69px auto 0;
+}
+
+/* Layout вътре в групата */
+.u-section-1 .u-container-layout-2,
+.u-section-2 .u-container-layout-2 {
+  padding: 40px 0 31px;
+}
+
+/* Снимки */
+.u-section-1 .u-image-2,
+.u-section-1 .u-image-3,
+.u-section-1 .u-image-4,
+.u-section-2 .u-image-2,
+.u-section-2 .u-image-3,
+.u-section-2 .u-image-4 {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Размери и позиции на снимки */
+.u-section-1 .u-image-2,
+.u-section-2 .u-image-2 {
+  width: 372px;
+  height: 372px;
+  margin: 23px 32px 0 auto;
+}
+
+.u-section-1 .u-image-3,
+.u-section-2 .u-image-3 {
+  width: 256px;
+  height: 256px;
+  margin: -314px auto 0 301px;
+}
+
+.u-section-1 .u-image-4,
+.u-section-2 .u-image-4 {
+  width: 194px;
+  height: 194px;
+  margin: -219px auto 0 61px;
+}
+
+/* Заглавие на event */
+.u-section-1 .u-text-2,
+.u-section-2 .u-text-2 {
+  width: 735px;
+  margin: 125px auto 0;
+}
+
+/* Линия под заглавието */
+.u-section-1 .u-line-1,
+.u-section-2 .u-line-1 {
+  width: 344px;
+  margin: 61px auto 0 317px;
+}
+
+/* More info бутон */
+.u-section-1 .u-btn-2,
+.u-section-2 .u-btn-2 {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 69px auto 0 343px;
+  padding: 20px 87px 20px 86px;
+}
+
+/* Центриране на fallback текстове */
+
+/* Responsive корекции */
+@media (max-width: 1199px) {
+  .u-section-1, .u-section-2 {
+    min-height: 1223px;
+  }
+  .u-section-1 .u-group-1,
+  .u-section-2 .u-group-1 {
+    width: 940px;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1, .u-section-2 {
+    min-height: 967px;
+  }
+  .u-section-1 .u-group-1,
+  .u-section-2 .u-group-1 {
+    width: 720px;
+  }
+  .u-section-1 .u-text-2,
+  .u-section-2 .u-text-2 {
+    width: 720px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1, .u-section-2 {
+    min-height: 758px;
+  }
+  .u-section-1 .u-group-1,
+  .u-section-2 .u-group-1 {
+    width: 540px;
+  }
+  .u-section-1 .u-text-2,
+  .u-section-2 .u-text-2 {
+    width: 540px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1, .u-section-2 {
+    min-height: 525px;
+  }
+  .u-section-1 .u-group-1,
+  .u-section-2 .u-group-1 {
+    width: 340px;
+  }
+  .u-section-1 .u-text-2,
+  .u-section-2 .u-text-2 {
+    width: 340px;
+  }
+  .u-section-1 .u-line-1,
+  .u-section-2 .u-line-1 {
+    width: 340px;
+    margin-left: 0;
+  }
+}
+/* Past Events Section Smaller Styling */
+
+.u-section-2 {
+  background-image: url("../images/photo-1519904981063-b0cf448d479e.46b831931519.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 1000px;
+  padding: 40px 20px;
+}
+
+/* Smaller event card */
+.u-section-2 .u-group-1 {
+  width: 200px;
+  min-height: 320px;
+  background-color: #fef0e8;
+  border-radius: 30px;
+  margin: 20px;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  animation: fadeInUp 0.8s ease;
+}
+
+/* Image circles smaller */
+.u-section-2 .u-image-2,
+.u-section-2 .u-image-3,
+.u-section-2 .u-image-4 {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #f9844a;
+  display: inline-block;
+  margin: 0 4px;
+}
+
+.u-section-2 .u-image-2 { width: 45px; height: 45px; }
+.u-section-2 .u-image-3 { width: 45px; height: 45px; }
+.u-section-2 .u-image-4 { width: 45px; height: 45px; }
+
+/* Event title */
+.u-section-2 .u-text-2 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 12px 0 6px 0;
+}
+
+/* Underline */
+.u-section-2 .u-line-1 {
+  width: 60%;
+  border-bottom: 2px solid #f9844a;
+  margin: 0 auto 10px auto;
+}
+
+/* More info button smaller */
+.u-section-2 .u-btn-2 {
+  background-color: #f9844a;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 6px 16px;
+  font-size: 0.75rem;
+  border-radius: 20px;
+  margin: 10px auto;
+  display: inline-block;
+}
+
+/* Social icon smaller */
+.u-section-2 .u-social-icons-1 {
+  height: 24px;
+  width: 24px;
+  margin: 8px auto 0 auto;
+}
+
+/* Animation keyframe */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .u-section-2 .u-group-1 {
+    width: 180px;
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-2 .u-group-1 {
+    width: 160px;
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-2 .u-group-1 {
+    width: 140px;
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-2 .u-group-1 {
+    width: 100%;
+    min-height: auto;
+    margin: 10px 0;
+  }
+}
+/* --- CORRECTED STYLES SPECIFICALLY FOR .u-section-2 --- */
+
+/* Smaller card for past events */
+.u-section-2 .u-group-1 {
+  width: 200px;
+  min-height: 320px;
+  background-color: #fef0e8;
+  border-radius: 30px;
+  margin: 20px;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  animation: fadeInUp 0.8s ease;
+}
+
+/* Small circular images */
+.u-section-2 .u-image-2,
+.u-section-2 .u-image-3,
+.u-section-2 .u-image-4 {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #f9844a;
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  margin: 4px;
+}
+
+/* 🔧 FIX: Text inside box properly sized and positioned */
+.u-section-2 .u-text-2 {
+  width: auto;          /* Remove fixed 735px width */
+  margin: 10px 0;       /* Remove large top margin */
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  word-wrap: break-word; /* Ensure long names wrap properly */
+}
+
+/* Underline style */
+.u-section-2 .u-line-1 {
+  width: 60%;
+  border-bottom: 2px solid #f9844a;
+  margin: 10px auto;
+}
+
+/* Smaller button */
+.u-section-2 .u-btn-2 {
+  background-color: #f9844a;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 6px 16px;
+  font-size: 0.75rem;
+  border-radius: 20px;
+  margin: 10px auto;
+  display: inline-block;
+}
+
+/* Animation keyframe */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 1200px) {
+  .u-section-2 .u-group-1 {
+    width: 180px;
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-2 .u-group-1 {
+    width: 160px;
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-2 .u-group-1 {
+    width: 140px;
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-2 .u-group-1 {
+    width: 100%;
+    min-height: auto;
+    margin: 10px 0;
+  }
+}
+
+.pagination a,
+.pagination span {
+  background-color: #000; /* Black background */
+  color: #F58D54;         /* Text color */
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid #F58D54;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 4px;
+  display: inline-block;
+}
+
+.pagination a:hover {
+  background-color: #F58D54;
+  color: #000;
+}
