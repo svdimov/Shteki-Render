@@ -9,7 +9,13 @@ from django.http import HttpResponse
 def health(request):  
     return HttpResponse("OK")
 
+
+sitemaps = {
+    "static": StaticViewSitemap,
+}
+
 urlpatterns = [
+    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
     path("health/", health), 
     path('i18n/', include('django.conf.urls.i18n')),   # set_language
     path('rosetta/', include('rosetta.urls')),         # Rosetta UI for translations

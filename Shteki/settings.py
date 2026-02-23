@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'cloudinary_storage',
     'rosetta',
+    'django.contrib.sitemaps',
 
 ]
 
