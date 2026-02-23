@@ -24,21 +24,14 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Check Render secrets present
-        run: |
-          if [ -z "${{ secrets.RENDER_API_KEY }}" ]; then echo "RENDER_API_KEY is EMPTY"; exit 1; else echo "RENDER_API_KEY is set"; fi
-          if [ -z "${{ secrets.RENDER_SERVICE_ID }}" ]; then echo "RENDER_SERVICE_ID is EMPTY"; exit 1; else echo "RENDER_SERVICE_ID is set"; fi
-            # No tests (as requested)
+      
+      # No tests (as requested)
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-
     steps:
-      - name: Deploy to Render
-        uses: JorgeLNJunior/render-deploy@v1.5.0
-        with:
-          service_id: ${{ secrets.RENDER_SERVICE_ID }}
-          api_key: ${{ secrets.RENDER_API_KEY }}
-          wait_deploy: true
+    - name: Trigger Render Deploy Hook
+      run: |
+        curl -fsS -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
