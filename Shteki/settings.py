@@ -138,6 +138,8 @@ LANGUAGES = [
     ('bg', 'Български'),
 ]
 
+PREFIX_DEFAULT_LANGUAGE = True
+
 TIME_ZONE = 'Europe/Sofia'
 USE_TZ = True
 
