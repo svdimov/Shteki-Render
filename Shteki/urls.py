@@ -8,6 +8,8 @@ from django.http import HttpResponse
 from django.contrib.sitemaps.views import sitemap
 from common.sitemaps import StaticViewSitemap
 
+from django.views.generic import TemplateView
+
 
 def health(request):  
     return HttpResponse("OK")
@@ -19,6 +21,7 @@ sitemaps = {
 
 urlpatterns = [
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
+    path("robots.txt",TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),),
     path("health/", health), 
     path('i18n/', include('django.conf.urls.i18n')),   # set_language
     path('rosetta/', include('rosetta.urls')),         # Rosetta UI for translations
