@@ -1,5 +1,6 @@
+import requests
+
 from django.conf import settings
-from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
@@ -34,11 +35,24 @@ def send_activation_email(request, user):
         context,
     )
 
-    email = EmailMultiAlternatives(
-        subject=subject,
-        body=text_body,
-        from_email=settings.DEFAULT_FROM_EMAIL,
-        to=[user.email],
-    )
-    email.attach_alternative(html_body, "text/html")
-    email.send(fail_silently=False)
+    url = "https://api.brevo.com/v3/smtp/email"
+
+    headers = {
+        "accept": "application/json",
+        "api-key": settings.BREVO_API_KEY,
+        "content-type": "application/json",
+    }
+
+    payload = {
+        "sender": {
+            "name": "Izkriveni Shteki",
+            "email": settings.DEFAULT_FROM_EMAIL,
+        },
+        "to": [{"email": user.email}],
+        "subject": subject,
+        "htmlContent": html_body,
+        "textContent": text_body,
+    }
+
+    response = requests.post(url, json=payload, headers=headers, timeout=20)
+    response.raise_for_status()
