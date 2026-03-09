@@ -4,7 +4,7 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 
-from .tokens import account_activation_token
+from accounts.tokens import account_activation_token
 
 
 def send_activation_email(request, user):
@@ -37,7 +37,7 @@ def send_activation_email(request, user):
     email = EmailMultiAlternatives(
         subject=subject,
         body=text_body,
-        from_email=settings.COMPANY_EMAIL,
+        from_email=settings.DEFAULT_FROM_EMAIL,
         to=[user.email],
     )
     email.attach_alternative(html_body, "text/html")
