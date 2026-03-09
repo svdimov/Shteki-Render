@@ -31,6 +31,10 @@ from django.views import View
 
 from accounts.tokens import account_activation_token
 
+import logging
+from django.db import transaction
+logger = logging.getLogger(__name__)
+
 UserModel = get_user_model()
 
 
@@ -41,14 +45,20 @@ class RegisterView(CreateView):
     success_url = reverse_lazy('activation-email-sent')
 
     def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.is_active = False
-        self.object.save()
+        try:
+            with transaction.atomic():
+                self.object = form.save(commit=False)
+                self.object.is_active = False
+                self.object.save()
 
-        send_activation_email(self.request, self.object)
+                send_activation_email(self.request, self.object)
 
-        return redirect(self.get_success_url())
+            return redirect(self.get_success_url())
 
+        except Exception as e:
+            logger.exception("Registration activation email failed for %s", form.cleaned_data.get("email"))
+            form.add_error(None, "Не успяхме да изпратим email за активация. Моля, опитай отново.")
+            return self.form_invalid(form)
 
 class CustomLoginView(LoginView):
     authentication_form = CustomAuthenticationForm
