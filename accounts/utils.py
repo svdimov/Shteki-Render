@@ -1,11 +1,10 @@
-import requests
-
-from django.conf import settings
+from django.contrib.auth.tokens import default_token_generator
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 
 from accounts.tokens import account_activation_token
+from common.brevo_email import send_brevo_email
 
 
 def send_activation_email(request, user):
@@ -35,24 +34,46 @@ def send_activation_email(request, user):
         context,
     )
 
-    url = "https://api.brevo.com/v3/smtp/email"
+    send_brevo_email(
+        to_email=user.email,
+        subject=subject,
+        text_body=text_body,
+        html_body=html_body,
+    )
 
-    headers = {
-        "accept": "application/json",
-        "api-key": settings.BREVO_API_KEY,
-        "content-type": "application/json",
+
+def send_password_reset_email(request, user):
+    protocol = "https" if request.is_secure() else "http"
+    domain = request.get_host()
+
+    context = {
+        "email": user.email,
+        "domain": domain,
+        "site_name": "Izkriveni Shteki",
+        "uid": urlsafe_base64_encode(force_bytes(user.pk)),
+        "user": user,
+        "token": default_token_generator.make_token(user),
+        "protocol": protocol,
     }
 
-    payload = {
-        "sender": {
-            "name": "Izkriveni Shteki",
-            "email": settings.DEFAULT_FROM_EMAIL,
-        },
-        "to": [{"email": user.email}],
-        "subject": subject,
-        "htmlContent": html_body,
-        "textContent": text_body,
-    }
+    subject = render_to_string(
+        "profiles/password_reset_subject.txt",
+        context,
+    ).strip()
 
-    response = requests.post(url, json=payload, headers=headers, timeout=20)
-    response.raise_for_status()
+    text_body = render_to_string(
+        "profiles/password_reset_email.txt",
+        context,
+    )
+
+    html_body = render_to_string(
+        "profiles/password_reset_email.html",
+        context,
+    )
+
+    send_brevo_email(
+        to_email=user.email,
+        subject=subject,
+        text_body=text_body,
+        html_body=html_body,
+    )

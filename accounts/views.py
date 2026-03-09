@@ -15,7 +15,7 @@ from django.utils import timezone
 from django.contrib.auth.forms import PasswordResetForm
 from django.shortcuts import render
 
-from accounts.utils import send_activation_email
+from accounts.utils import send_activation_email, send_password_reset_email
 from django.shortcuts import redirect
 
 from django.views.generic import TemplateView
@@ -95,15 +95,13 @@ class CustomLoginView(LoginView):
             user.failed_login_attempts += 1
             if user.failed_login_attempts >= self.max_attempts:
                 user.is_locked = True
-                user.failed_login_attempts = 0  # reset attempts
-                reset_form = PasswordResetForm({'email': email})
-                if reset_form.is_valid():
-                    reset_form.save(
-                        request=self.request,
-                        email_template_name='profiles/password_reset_email.html',
-                        subject_template_name='profiles/password_reset_subject.txt'
-                    )
-            user.save()
+                user.failed_login_attempts = 0
+                user.save(update_fields=['is_locked', 'failed_login_attempts'])
+
+                send_password_reset_email(self.request, user)
+                return render(self.request, 'profiles/account-login.html')
+
+            user.save(update_fields=['failed_login_attempts'])
         except UserModel.DoesNotExist:
             pass
 

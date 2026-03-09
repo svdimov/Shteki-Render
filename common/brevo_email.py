@@ -2,11 +2,14 @@ import requests
 from django.conf import settings
 
 
-def send_brevo_contact_email(*, subject: str, body: str, reply_to: str) -> None:
-    """
-    Sends contact email via Brevo Transactional Email API.
-    Works on Render Free (HTTPS/443), unlike SMTP ports.
-    """
+def send_brevo_email(
+    *,
+    to_email: str,
+    subject: str,
+    text_body: str,
+    html_body: str | None = None,
+    reply_to: str | None = None,
+) -> None:
     if not settings.BREVO_API_KEY:
         raise RuntimeError("BREVO_API_KEY is not set")
 
@@ -19,16 +22,28 @@ def send_brevo_contact_email(*, subject: str, body: str, reply_to: str) -> None:
 
     payload = {
         "sender": {
-            # must be a sender/domain you've configured in Brevo, иначе може да откаже
             "name": "Izkriveni Shteki",
             "email": settings.DEFAULT_FROM_EMAIL,
         },
-        "to": [{"email": settings.DEFAULT_CONTACT_EMAIL}],
+        "to": [{"email": to_email}],
         "subject": subject,
-        # Използваме htmlContent, но може и textContent
-        "textContent": body,
-        "replyTo": {"email": reply_to},
+        "textContent": text_body,
     }
 
-    r = requests.post(url, json=payload, headers=headers, timeout=20)
-    r.raise_for_status()
+    if html_body:
+        payload["htmlContent"] = html_body
+
+    if reply_to:
+        payload["replyTo"] = {"email": reply_to}
+
+    response = requests.post(url, json=payload, headers=headers, timeout=20)
+    response.raise_for_status()
+
+
+def send_brevo_contact_email(*, subject: str, body: str, reply_to: str) -> None:
+    send_brevo_email(
+        to_email=settings.DEFAULT_CONTACT_EMAIL,
+        subject=subject,
+        text_body=body,
+        reply_to=reply_to,
+    )

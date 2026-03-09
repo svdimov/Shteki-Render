@@ -1,12 +1,12 @@
 from django.apps import apps
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import PasswordResetForm
+
 from django.contrib.auth.signals import user_login_failed, user_logged_in
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 UserModel = get_user_model()
-
+from accounts.utils import send_password_reset_email
 
 @receiver(post_save, sender=UserModel)
 def create_profile(sender, instance, created, **kwargs):
@@ -30,17 +30,14 @@ def handle_failed_admin_login(sender, credentials, request, **kwargs):
         if user.failed_login_attempts >= 3:
             user.is_locked = True
             user.failed_login_attempts = 0
-            reset_form = PasswordResetForm({'email': email})
-            if reset_form.is_valid():
-                reset_form.save(
-                    request=request,
-                    email_template_name='profiles/password_reset_email.html',
-                    subject_template_name='profiles/password_reset_subject.txt',
-                )
-        user.save()
+            user.save(update_fields=['is_locked', 'failed_login_attempts'])
+
+            send_password_reset_email(request, user)
+            return
+
+        user.save(update_fields=['failed_login_attempts'])
     except UserModel.DoesNotExist:
         pass
-
 
 @receiver(user_logged_in)
 def reset_failed_attempts(sender, user, request, **kwargs):
