@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <title>Активация на акаунт</title>
+</head>
+<body style="margin:0; padding:0; font-family: Arial, sans-serif; line-height:1.6; color:#1f2937; background:#f5f7fb;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#f5f7fb; padding:32px 16px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
+               style="max-width:600px; background:#ffffff; border-radius:16px; padding:32px; border:1px solid #e5e7eb;">
+
+          <tr>
+            <td style="padding-bottom:16px; font-size:16px;">
+              Здравей,
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding-bottom:16px; font-size:16px;">
+              Благодарим ти за регистрацията в <strong>Изкривени щеки</strong>.
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding-bottom:24px; font-size:16px;">
+              Натисни бутона по-долу, за да активираш акаунта си:
+            </td>
+          </tr>
+
+          <tr>
+            <td align="center" style="padding: 12px 0 28px 0;">
+              <a href="{{ protocol }}://{{ domain }}{% url 'activate-account' uidb64=uid token=token %}"
+                 style="display:inline-block; padding:14px 24px; background:#1f7a5c; color:#ffffff; text-decoration:none; border-radius:8px; font-weight:bold; font-size:16px;">
+                Активирай акаунта
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding-bottom:12px; font-size:16px;">
+              Ако бутонът не работи, отвори този линк:
+            </td>
+          </tr>
+
+          <tr>
+            <td style="font-size:15px; word-break:break-word; color:#2563eb;">
+              <a href="{{ protocol }}://{{ domain }}{% url 'activate-account' uidb64=uid token=token %}"
+                 style="color:#2563eb; text-decoration:none;">
+                {{ protocol }}://{{ domain }}{% url 'activate-account' uidb64=uid token=token %}
+              </a>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

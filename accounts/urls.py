@@ -4,10 +4,14 @@ from django.contrib.auth.views import LogoutView
 from django.urls import path, include
 from accounts import views
 from accounts.forms import CustomSetPasswordForm
-from accounts.views import CustomLoginView, CustomPasswordResetConfirmView
+from accounts.views import CustomLoginView, CustomPasswordResetConfirmView, ActivationEmailSentView, ActivateAccountView
 
 urlpatterns = [
     path("register/", views.RegisterView.as_view(), name='register'),
+
+    path("activation-email-sent/",ActivationEmailSentView.as_view(),name="activation-email-sent",),
+    path("activate/<uidb64>/<token>/",ActivateAccountView.as_view(),name="activate-account",),
+
     path("login/", CustomLoginView.as_view(), name='login'),
     path("logout/", LogoutView.as_view(), name='logout'),
 

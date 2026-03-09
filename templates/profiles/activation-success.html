@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Account activated" %}{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/activation-success.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="activation-success-page">
+  <div class="activation-success-card">
+    <div class="activation-success-badge" aria-hidden="true">
+      ✓
+    </div>
+
+    <p class="activation-success-eyebrow">
+      {% trans "Activation complete" %}
+    </p>
+
+    <h1 class="activation-success-title">
+      {% trans "Your account is now active" %}
+    </h1>
+
+    <p class="activation-success-text">
+      {% trans "Your account has been activated successfully." %}
+    </p>
+
+    <p class="activation-success-text activation-success-text-muted">
+      {% trans "You can now log in with your email and password." %}
+    </p>
+
+    <div class="activation-success-actions">
+      <a href="{% url 'login' %}" class="btn btn-primary">
+        {% trans "Go to login" %}
+      </a>
+
+      <a href="{% url 'home' %}" class="btn btn-outline">
+        {% trans "Back to home" %}
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}

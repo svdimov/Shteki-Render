@@ -15,6 +15,22 @@ from django.utils import timezone
 from django.contrib.auth.forms import PasswordResetForm
 from django.shortcuts import render
 
+from accounts.utils import send_activation_email
+from django.shortcuts import redirect
+
+from django.views.generic import TemplateView
+
+
+from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.core.mail import send_mail
+from django.shortcuts import render
+from django.utils.encoding import force_str
+from django.utils.http import urlsafe_base64_decode
+from django.views import View
+
+from accounts.tokens import account_activation_token
+
 UserModel = get_user_model()
 
 
@@ -22,24 +38,16 @@ class RegisterView(CreateView):
     model = UserModel
     form_class = AppUserCreationForm
     template_name = 'profiles/register.html'
+    success_url = reverse_lazy('activation-email-sent')
 
-    # def form_valid(self, form):
-    #     self.object = form.save()
-    #
-    #     return HttpResponseRedirect(self.get_success_url())
     def form_valid(self, form):
-        response = super().form_valid(form)
+        self.object = form.save(commit=False)
+        self.object.is_active = False
+        self.object.save()
 
-        user = self.object
-        user.backend = 'django.contrib.auth.backends.ModelBackend'
-        login(self.request, user)
+        send_activation_email(self.request, self.object)
 
-        return response
-
-    def get_success_url(self):
-        return reverse('profile-details', kwargs={'pk': self.object.pk})
-
-        # Note: Signal for profile creation
+        return redirect(self.get_success_url())
 
 
 class CustomLoginView(LoginView):
@@ -148,3 +156,42 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
         return response
 
 #
+
+
+
+class ActivationEmailSentView(TemplateView):
+    template_name = 'profiles/activation-email-sent.html'
+
+
+
+
+
+
+
+
+
+class ActivateAccountView(View):
+    success_template_name = "profiles/activation-success.html"
+    invalid_template_name = "profiles/activation-invalid.html"
+
+    def get(self, request, uidb64, token, *args, **kwargs):
+        user = None
+
+        try:
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            user = UserModel.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, UserModel.DoesNotExist):
+            pass
+
+        if user and account_activation_token.check_token(user, token):
+            if not user.is_active:
+                user.is_active = True
+                user.save(update_fields=["is_active"])
+
+            return render(
+                request,
+                self.success_template_name,
+                {"activated_user": user},
+            )
+
+        return render(request, self.invalid_template_name)

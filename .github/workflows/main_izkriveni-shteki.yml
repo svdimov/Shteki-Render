@@ -25,7 +25,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       
-      # No tests (as requested)
+      - name: Run tests
+        run: python manage.py test
+
 
   deploy:
     runs-on: ubuntu-latest

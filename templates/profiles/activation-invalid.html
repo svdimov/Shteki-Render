@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Invalid activation link" %}{% endblock %}
+
+<link rel="stylesheet" href="{% static 'css/activation-email-sent.css' %}">
+
+{% block content %}
+<section class="activation-page">
+  <div class="activation-card">
+    <div class="activation-badge">!</div>
+
+    <p class="activation-eyebrow">{% trans "Activation failed" %}</p>
+
+    <h1 class="activation-title">
+      {% trans "Invalid or expired link" %}
+    </h1>
+
+    <p class="activation-text">
+      {% trans "This activation link is invalid, expired, or has already been used." %}
+    </p>
+
+    <div class="activation-actions">
+      <a href="{% url 'login' %}" class="btn btn-primary">
+        {% trans "Go to login" %}
+      </a>
+
+      <a href="{% url 'register' %}" class="btn btn-outline">
+        {% trans "Register again" %}
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}

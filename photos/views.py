@@ -23,7 +23,11 @@ class PhotosView(LoginRequiredMixin, ListView):
     paginate_by = 8
 
     def get_queryset(self):
-        return Event.objects.all().order_by('-start_date')
+        return (
+            Event.objects
+            .prefetch_related('user_photos')
+            .order_by('-id')
+        )
 
 
 
@@ -42,7 +46,7 @@ class PhotoAddView(LoginRequiredMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['event'] = self.event
-        context['photos'] = self.event.user_photos.select_related('user__profile').all()
+        context['photos'] = self.event.user_photos.select_related('user__profile').order_by('-uploaded_at')
         return context
 
     def post(self, request, *args, **kwargs):

@@ -1,11 +1,9 @@
 from django.apps import apps
-from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.core.mail import send_mail
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.signals import user_login_failed, user_logged_in
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 UserModel = get_user_model()
 
@@ -16,27 +14,18 @@ def create_profile(sender, instance, created, **kwargs):
         Profile = apps.get_model("accounts", "Profile")
         Profile.objects.create(user=instance)
 
-        try:
-            send_mail(
-                subject='Welcome to www.izkriveni-shteki.bg',
-                message='Thank you for registering in www.izkriveni-shteki.bg! We are excited to have you on board.',
-                from_email=settings.COMPANY_EMAIL,
-                recipient_list=[instance.email],
-                fail_silently=True,
-            )
-        except Exception:
-            pass
-
 
 @receiver(user_login_failed)
 def handle_failed_admin_login(sender, credentials, request, **kwargs):
     if request is None or not request.path.startswith('/admin'):
         return
+
     email = credentials.get('username')
     try:
         user = UserModel.objects.get(email=email)
         if user.is_locked:
             return
+
         user.failed_login_attempts += 1
         if user.failed_login_attempts >= 3:
             user.is_locked = True

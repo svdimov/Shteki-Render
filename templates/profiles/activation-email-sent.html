@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Check your email" %}{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/activation-email-sent.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="activation-page">
+  <div class="activation-card">
+    <div class="activation-badge">
+      ✉
+    </div>
+
+    <p class="activation-eyebrow">{% trans "Registration successful" %}</p>
+
+    <h1 class="activation-title">
+      {% trans "Check your email" %}
+    </h1>
+
+    <p class="activation-text">
+      {% trans "We sent you an activation link to your email address." %}
+    </p>
+
+    <p class="activation-text activation-text-muted">
+      {% trans "Open the message and click the activation button to activate your account." %}
+    </p>
+
+    <div class="activation-actions">
+      <a href="{% url 'login' %}" class="btn btn-primary">
+        {% trans "Go to login" %}
+      </a>
+
+      <a href="{% url 'home' %}" class="btn btn-outline">
+        {% trans "Back to home" %}
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}

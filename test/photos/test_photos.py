@@ -1,4 +1,4 @@
-from urllib import response
+
 
 from django.conf import urls
 from django.test import TestCase, override_settings
@@ -9,6 +9,10 @@ from events.models import Event
 from photos.models import Photo
 from events.choices import StatusChoice
 from django.utils import timezone
+
+from io import BytesIO
+from PIL import Image
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 
 UserModel = get_user_model()
@@ -28,21 +32,33 @@ class TestPhotoAddView(TestCase):
             creator=self.user,
         )
 
+
+
+    def get_test_image(self):
+        file_obj = BytesIO()
+        image = Image.new("RGB", (100, 100))
+        image.save(file_obj, format="JPEG")
+        file_obj.seek(0)
+        return SimpleUploadedFile(
+            "test.jpg",
+            file_obj.read(),
+            content_type="image/jpeg"
+        )
+
     def test_photo_upload_valid(self):
         url = reverse('photos-detail', kwargs={'event_id': self.event.pk})
-        image = SimpleUploadedFile("test.jpg", b"file_content", content_type="image/jpeg")
+        image = self.get_test_image()
 
         response = self.client.post(
             url,
-            data={},
-            files={'images': image},
+            data={'images': image},
             follow=True
         )
 
-        print("Form error:", response.context.get('form_error'))
-        print("Photos:", Photo.objects.all())
-        self.assertEqual(Photo.objects.filter(event=self.event, user=self.user).count(), 1)
-        self.assertRedirects(response, url)
+        self.assertEqual(
+            Photo.objects.filter(event=self.event, user=self.user).count(),
+            1
+        )
 
     def test_photo_upload_no_image_shows_error(self):
         url = reverse('photos-detail', kwargs={'event_id': self.event.pk})

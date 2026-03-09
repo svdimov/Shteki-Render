@@ -18,7 +18,7 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     )
 
     is_active = models.BooleanField(
-        default=True,
+        default=False,
     )
 
     is_staff = models.BooleanField(
