@@ -98,10 +98,18 @@ class CustomLoginView(LoginView):
                 user.failed_login_attempts = 0
                 user.save(update_fields=['is_locked', 'failed_login_attempts'])
 
-                send_password_reset_email(self.request, user)
+                try:
+                    send_password_reset_email(self.request, user)
+                except Exception:
+                    logger.exception(
+                        "Failed to send password reset email to %s",
+                        user.email,
+                    )
+
                 return render(self.request, 'profiles/account-login.html')
 
             user.save(update_fields=['failed_login_attempts'])
+
         except UserModel.DoesNotExist:
             pass
 

@@ -2,14 +2,7 @@ import requests
 from django.conf import settings
 
 
-def send_brevo_email(
-    *,
-    to_email: str,
-    subject: str,
-    text_body: str,
-    html_body: str | None = None,
-    reply_to: str | None = None,
-) -> None:
+def send_brevo_email( *,to_email: str,subject: str,text_body: str,html_body: str | None = None,reply_to: str | None = None,) -> None:
     if not settings.BREVO_API_KEY:
         raise RuntimeError("BREVO_API_KEY is not set")
 
@@ -37,6 +30,12 @@ def send_brevo_email(
         payload["replyTo"] = {"email": reply_to}
 
     response = requests.post(url, json=payload, headers=headers, timeout=20)
+
+    if not response.ok:
+        raise RuntimeError(
+            f"Brevo API error {response.status_code}: {response.text}"
+        )
+
     response.raise_for_status()
 
 
