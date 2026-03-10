@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}404 - Нямаш щеки{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/404.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="error404">
+  <div class="error404-inner">
+    <div class="error404-poles" aria-hidden="true">
+      <img src="{% static 'images/stick.png' %}" alt="" class="pole pole-left">
+      <img src="{% static 'images/stick.png' %}" alt="" class="pole pole-right">
+    </div>
+
+    <div class="error404-card">
+      <p class="error404-code">404</p>
+      <h1 class="error404-title">Нямаш щеки</h1>
+      <p class="error404-text">
+        Страницата, която търсиш, май се е загубила по пътеката.
+      </p>
+      <p class="error404-path">
+        <strong>Път:</strong> {{ request.path }}
+      </p>
+
+      <div class="error404-actions">
+        <a href="{% url 'home' %}" class="btn btn-primary">
+          Към началото
+        </a>
+        <a href="{% url 'contacts' %}" class="btn btn-outline">
+          Контакти
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,178 @@
+.error404{
+  min-height: calc(var(--app-height) - 220px);
+  display: grid;
+  place-items: center;
+  padding: 24px 0 40px;
+}
+
+.error404-inner{
+  position: relative;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.error404-card{
+  position: relative;
+  z-index: 2;
+  width: min(760px, 100%);
+  text-align: center;
+  padding: 42px 28px;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 88%, transparent),
+      color-mix(in srgb, var(--surface) 96%, transparent)
+    );
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.error404-card::before{
+  content:"";
+  position:absolute;
+  inset:auto -10% -55% -10%;
+  height:220px;
+  background:
+    radial-gradient(circle, color-mix(in srgb, var(--orange) 18%, transparent) 0%, transparent 62%);
+  pointer-events:none;
+}
+
+.error404-code{
+  font-family: var(--font-display);
+  font-size: clamp(72px, 14vw, 150px);
+  line-height: .9;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin: 0 0 8px;
+  background: linear-gradient(135deg, var(--blue), var(--orange), var(--burg));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 14px 30px rgba(0,0,0,.08);
+  animation: float404 2.8s ease-in-out infinite;
+}
+
+.error404-title{
+  font-size: clamp(30px, 5vw, 52px);
+  margin-bottom: 10px;
+  font-weight: 900;
+}
+
+.error404-text{
+  max-width: 540px;
+  margin: 0 auto 10px;
+  font-size: 18px;
+  color: var(--muted);
+}
+
+.error404-path{
+  margin: 0 auto 26px;
+  font-size: 14px;
+  color: var(--muted);
+  word-break: break-word;
+  opacity: .95;
+}
+
+.error404-actions{
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.error404-poles{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pole{
+  position: absolute;
+  top: 50%;
+  width: clamp(120px, 14vw, 180px);
+  opacity: .95;
+  filter: drop-shadow(0 18px 35px rgba(0,0,0,.16));
+  transform-origin: center 18%;
+}
+
+/* лява щека */
+.pole-left{
+  left: clamp(0px, 4vw, 40px);
+  transform: translateY(-50%) rotate(-18deg);
+  animation: poleLeftSwing 2.2s ease-in-out infinite;
+}
+
+/* дясна щека */
+.pole-right{
+  right: clamp(0px, 4vw, 40px);
+  transform: translateY(-50%) rotate(18deg) scaleX(-1);
+  animation: poleRightSwing 2.2s ease-in-out infinite;
+}
+
+@keyframes poleLeftSwing{
+  0%   { transform: translateY(-50%) rotate(-18deg) translateX(0); }
+  25%  { transform: translateY(-51%) rotate(-12deg) translateX(4px); }
+  50%  { transform: translateY(-50%) rotate(-18deg) translateX(0); }
+  75%  { transform: translateY(-49%) rotate(-24deg) translateX(-4px); }
+  100% { transform: translateY(-50%) rotate(-18deg) translateX(0); }
+}
+
+@keyframes poleRightSwing{
+  0%   { transform: translateY(-50%) rotate(18deg) scaleX(-1) translateX(0); }
+  25%  { transform: translateY(-51%) rotate(12deg) scaleX(-1) translateX(-4px); }
+  50%  { transform: translateY(-50%) rotate(18deg) scaleX(-1) translateX(0); }
+  75%  { transform: translateY(-49%) rotate(24deg) scaleX(-1) translateX(4px); }
+  100% { transform: translateY(-50%) rotate(18deg) scaleX(-1) translateX(0); }
+}
+
+@keyframes float404{
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+@media (max-width: 900px){
+  .pole{
+    width: 120px;
+    opacity: .28;
+  }
+
+  .pole-left{
+    left: -8px;
+  }
+
+  .pole-right{
+    right: -8px;
+  }
+}
+
+@media (max-width: 640px){
+  .error404-card{
+    padding: 34px 18px;
+    border-radius: 22px;
+  }
+
+  .error404-text{
+    font-size: 16px;
+  }
+
+  .pole{
+    width: 90px;
+    opacity: .18;
+    top: 22%;
+  }
+
+  .error404-actions{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .error404-actions .btn{
+    width: min(260px, 100%);
+  }
+}

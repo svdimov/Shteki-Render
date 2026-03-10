@@ -247,7 +247,9 @@ SOCIALACCOUNT_PROVIDERS = {
         "VERIFIED_EMAIL": False,
     },
 }
+# 404 page
 
+APPEND_SLASH = True
 
 LOGGING = {
     "version": 1,

@@ -14,6 +14,8 @@ from django.views.generic import TemplateView
 def health(request):  
     return HttpResponse("OK")
 
+handler404 = 'common.views.custom_404'
+handler500 = 'common.views.custom_500'
 
 sitemaps = {
     "static": StaticViewSitemap,
