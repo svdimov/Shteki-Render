@@ -215,12 +215,13 @@ CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=True, cast=bool)
 # google and facebook authentication settings
 
 SOCIALACCOUNT_ADAPTER = 'accounts.adapters.CustomSocialAccountAdapter'
-SITE_ID = 2
+SITE_ID = config('SITE_ID', default=1, cast=int)
 ACCOUNT_LOGIN_METHODS = {"email"}
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_USER_MODEL_EMAIL_FIELD = "email"
 
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = config('ACCOUNT_DEFAULT_HTTP_PROTOCOL', default='https')
 
 ACCOUNT_SIGNUP_FIELDS = [
     "email*",
