@@ -33,6 +33,7 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     path('', include('common.urls')),
     path('accounts/', include('accounts.urls')),
+    path("accounts/", include("allauth.urls")),
     path('events/', include('events.urls')),
     path('photos/', include('photos.urls')),
 )

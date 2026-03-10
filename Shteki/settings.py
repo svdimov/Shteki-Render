@@ -38,6 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+
     'common.apps.CommonConfig',
     'accounts.apps.AccountsConfig',
     'photos.apps.PhotosConfig',
@@ -58,6 +66,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
@@ -66,8 +75,10 @@ MIDDLEWARE = [
 AUTHENTICATION_BACKENDS = [
 
     'django.contrib.auth.backends.ModelBackend',
-
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+
 ROOT_URLCONF = 'Shteki.urls'
 
 TEMPLATES = [
@@ -200,6 +211,40 @@ WHITENOISE_MANIFEST_STRICT = False
 SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=True, cast=bool)
 SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=True, cast=bool)
 CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=True, cast=bool)
+
+# google and facebook authentication settings
+
+SOCIALACCOUNT_ADAPTER = 'accounts.adapters.CustomSocialAccountAdapter'
+SITE_ID = 2
+ACCOUNT_LOGIN_METHODS = {"email"}
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_USER_MODEL_EMAIL_FIELD = "email"
+
+ACCOUNT_SIGNUP_FIELDS = [
+    "email*",
+    "password1*",
+    "password2*",
+]
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": ["profile", "email"],
+    },
+    "facebook": {
+        "METHOD": "oauth2",
+        "SCOPE": ["email", "public_profile"],
+        "FIELDS": [
+            "id",
+            "email",
+            "first_name",
+            "last_name",
+            "name",
+        ],
+        "VERIFIED_EMAIL": False,
+    },
+}
 
 
 LOGGING = {

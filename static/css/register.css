@@ -30,9 +30,15 @@
     radial-gradient(820px 480px at 85% 35%, rgba(255,255,255,.08), transparent 70%);
   opacity:.75;
 }
-[data-theme="dark"] .register-section::before{ opacity:.35; }
 
-.register-section > *{ position: relative; z-index: 1; }
+[data-theme="dark"] .register-section::before{
+  opacity:.35;
+}
+
+.register-section > *{
+  position: relative;
+  z-index: 1;
+}
 
 .register-container{
   width: min(920px, 92vw);
@@ -60,7 +66,12 @@
   box-shadow: 0 34px 120px rgba(0,0,0,.50);
 }
 
-/* Django form output ({{ form }}) */
+/* form */
+.register-form{
+  display: grid;
+  gap: 12px;
+}
+
 .register-form-wrapper form{
   display: grid;
   gap: 12px;
@@ -80,7 +91,9 @@
 .register-form-wrapper input,
 .register-form-wrapper textarea,
 .register-form-wrapper select{
+  display: block;
   width: 100%;
+  box-sizing: border-box;
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,.22);
   padding: 12px 12px;
@@ -110,7 +123,6 @@
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--orange) 20%, transparent);
 }
 
-/* select dropdown options (ограничено по браузър) */
 .register-form-wrapper select option{
   background: rgba(10,12,18,.92);
   color: #fff;
@@ -136,16 +148,19 @@
 
 /* submit */
 .register-btn{
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
 
   margin-top: 8px;
   padding: 12px 16px;
   border-radius: 999px;
   border: 1px solid color-mix(in srgb, var(--orange) 55%, #000);
 
-  background: linear-gradient(135deg,
+  background: linear-gradient(
+    135deg,
     color-mix(in srgb, var(--orange) 92%, #fff),
     var(--orange)
   );
@@ -170,9 +185,110 @@
   transform: translateY(1px);
 }
 
+/* OR */
+.or-wrap{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 18px 0 12px;
+}
+
+.or{
+  display: inline-block;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: .18em;
+  color: rgba(255,255,255,.88);
+}
+
+/* social buttons */
+.social-auth-wrap{
+  display: grid;
+  gap: 12px;
+  width: 100%;
+}
+
+.social-auth-btn{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 62px;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255,255,255,.28);
+  justify-content: center;
+  text-decoration: none;
+  transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease, background .16s ease;
+  box-shadow: 0 8px 24px rgba(0,0,0,.18);
+}
+
+.social-auth-btn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,.45);
+  background: rgba(20, 20, 20, .96);
+  box-shadow: 0 12px 28px rgba(0,0,0,.22);
+}
+
+.social-auth-icon{
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 34px;
+}
+
+.social-auth-text{
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: .1px;
+}
+
+.social-auth-google .social-auth-icon svg,
+.social-auth-facebook .social-auth-icon svg{
+  display: block;
+}
+
+/* facebook disabled state */
+.social-auth-btn-disabled{
+  pointer-events: none;
+  opacity: .72;
+}
+
 /* mobile */
+@media (max-width: 640px){
+  .social-auth-btn{
+    min-height: 58px;
+    padding: 0 18px;
+    gap: 14px;
+  }
+
+  .social-auth-text{
+    font-size: 15px;
+  }
+
+  .social-auth-icon{
+    width: 30px;
+    height: 30px;
+    flex-basis: 30px;
+  }
+}
+
 @media (max-width: 560px){
-  .register-section{ padding: 44px 0 56px; }
-  .register-form-wrapper{ padding: 16px 12px; }
-  .register-btn{ width: 100%; }
+  .register-section{
+    padding: 44px 0 56px;
+  }
+
+  .register-form-wrapper{
+    padding: 16px 12px;
+  }
+
+  .register-btn{
+    width: 100%;
+  }
 }
