@@ -78,10 +78,11 @@ class PhotoAddView(LoginRequiredMixin, FormView):
 
 
 
-class PhotoDetailView(LoginRequiredMixin,PermissionRequiredMixin,DetailView):
+class PhotoDetailView(LoginRequiredMixin,DetailView):
     model = Photo
     template_name = 'photos/photos-detail.html'
     context_object_name = 'photo'
+    
 
 class PhotoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Photo
