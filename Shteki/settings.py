@@ -205,17 +205,29 @@ LOGIN_REDIRECT_URL = reverse_lazy('home')
 LOGOUT_REDIRECT_URL = reverse_lazy('home')
 LOGIN_URL = 'login'
 
-DEFAULT_CONTACT_EMAIL = config('DEFAULT_CONTACT_EMAIL')
-COMPANY_EMAIL = (config('COMPANY_EMAIL'))
+if 'test' in sys.argv:
+    EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+    EMAIL_HOST = 'localhost'
+    EMAIL_PORT = 25
+    EMAIL_HOST_USER = ''
+    EMAIL_HOST_PASSWORD = ''
+    EMAIL_USE_TLS = False
+    DEFAULT_CONTACT_EMAIL = 'test@example.com'
+    COMPANY_EMAIL = 'company@example.com'
+    DEFAULT_FROM_EMAIL = 'noreply@example.com'
+    BREVO_API_KEY = ''
+else:
+    DEFAULT_CONTACT_EMAIL = config('DEFAULT_CONTACT_EMAIL')
+    COMPANY_EMAIL = config('COMPANY_EMAIL')
 
-EMAIL_BACKEND = config('EMAIL_BACKEND')
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT', cast=int)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=False, cast=bool)
-DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
-BREVO_API_KEY = config('BREVO_API_KEY')
+    EMAIL_BACKEND = config('EMAIL_BACKEND')
+    EMAIL_HOST = config('EMAIL_HOST')
+    EMAIL_PORT = config('EMAIL_PORT', cast=int)
+    EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+    EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=False, cast=bool)
+    DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+    BREVO_API_KEY = config('BREVO_API_KEY')
 
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
